@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Latinoamérica</title>
+    <!-- Google Fonts para un estilo limpio y moderno -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f1115;
+            --bg-card: #181b22;
+            --accent-green: #55ff55;
+            --accent-green-hover: #3faa3f;
+            --text-main: #ffffff;
+            --text-muted: #a0a5b0;
+            --border-color: #2a2e39;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            /* Fondo con patrón sutil inspirado en bloques */
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 32px 32px;
+            line-height: 1.6;
+        }
+
+        /* HEADER & NAVBAR */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            border-bottom: 2px solid var(--border-color);
+            background: rgba(15, 17, 21, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-nav {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-green);
+            text-decoration: none;
+            text-shadow: 2px 2px #000;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        nav a.nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a.nav-link:hover {
+            color: var(--accent-green);
+        }
+
+        .btn-discord {
+            background-color: var(--accent-green);
+            color: #0f1115;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 14px rgba(85, 255, 85, 0.2);
+            transition: all 0.2s ease;
+            image-rendering: pixelated;
+        }
+
+        .btn-discord:hover {
+            background-color: var(--accent-green-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(85, 255, 85, 0.3);
+        }
+
+        /* HERO SECTION (INICIO) */
+        .hero {
+            text-align: center;
+            padding: 90px 20px 60px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            line-height: 1.4;
+            text-shadow: 3px 3px var(--border-color);
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            margin-bottom: 30px;
+        }
+
+        /* SECCIÓN DE GALERÍA (VISUALIZACIONES) */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 80px 20px;
+        }
+
+        .section-title {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--accent-green);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-green);
+        }
+
+        .card-img-container {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: #1e222b;
+            position: relative;
+        }
+
+        .card-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img-container img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .card-btn {
+            align-self: flex-start;
+            background: transparent;
+            color: var(--accent-green);
+            border: 2px solid var(--accent-green);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .card-btn:hover {
+            background: var(--accent-green);
+            color: #0f1115;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #090a0d;
+            border-top: 2px solid var(--border-color);
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer .footer-title {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-green);
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        /* RESPONSIVE PARA MÓVILES PEQUEÑOS */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            .hero h1 {
+                font-size: 1.2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER / NAVEGACIÓN -->
+    <header>
+        <a href="#inicio" class="logo-nav">MC LATAM</a>
+        <nav>
+            <a href="#inicio" class="nav-link">Inicio</a>
+            <a href="#visualizaciones" class="nav-link">Visualizaciones</a>
+            <a href="#comunidad" class="nav-link">Comunidad</a>
+            <a href="https://discord.com" target="_blank" class="btn-discord">Discord</a>
+        </nav>
+    </header>
+
+    <!-- SECCIÓN INICIO (HERO) -->
+    <section id="inicio" class="hero">
+        <h1>Minecraft Latinoamérica</h1>
+        <p>El punto de encuentro definitivo para constructores, aventureros y creadores de toda la región.</p>
+    </section>
+
+    <!-- SECCIÓN VISUALIZACIONES (GALERÍA) -->
+    <main id="visualizaciones" class="container">
+        <h2 class="section-title">Visualizaciones</h2>
+        
+        <div class="gallery-grid">
+            <!-- Tarjeta 1 -->
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600&auto=format&fit=crop&q=80" alt="Spawn Principal">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Spawn Principal</h3>
+                    <p class="card-desc">Un recorrido detallado por nuestra monumental zona de inicio construida en estilo medieval moderno.</p>
+                    <a href="#" class="card-btn">Ver más</a>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2 -->
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1563089145-599997674d42?w=600&auto=format&fit=crop&q=80" alt="Granjas Técnicas">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Granjas Técnicas</h3>
+                    <p class="card-desc">Exploración de las estructuras de automatización más avanzadas y eficientes de la comunidad.</p>
+                    <a href="#" class="card-btn">Ver más</a>
+                </div>
+            </div>
+
+            <!-- Tarjeta 3 -->
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=600&auto=format&fit=crop&q=80" alt="Paisajes y Shaders">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Paisajes y Shaders</h3>
+                    <p class="card-desc">Capturas cinematográficas usando configuraciones gráficas hiperrealistas en nuestros mundos.</p>
+                    <a href="#" class="card-btn">Ver más</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="comunidad">
+        <div class="footer-title">Minecraft Latinoamérica</div>
+        <p>Únete a nuestra comunidad y forma parte de las próximas grandes aventuras.</p>
+        <p style="font-size: 0.8rem; color: #666; margin-top: 20px;">© 2026 Minecraft Latam. No está afiliado de manera oficial con Mojang o Microsoft.</p>
+    </footer>
+
+</body>
+</html>
+
