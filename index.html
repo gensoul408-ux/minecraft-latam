@@ -24,34 +24,36 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: var(--bg-main); color: var(--text-main); font-family: 'Outfit', sans-serif; overflow-x: hidden; line-height: 1.6; position: relative; }
         
-        /* CONTENEDOR DE FUEGO EN MOVIMIENTO DE FONDO */
-        #fire-background {
+        /* FUEGO GIGANTE EN MOVIMIENTO DE FONDO */
+        #giant-fire-bg {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: clamp(20rem, 60vw, 45rem);
             pointer-events: none;
             z-index: 0;
-            overflow: hidden;
-            opacity: 0.4;
-        }
-        .flame-particle {
-            position: absolute;
-            bottom: -50px;
-            background: radial-gradient(circle, rgba(255,48,48,0.8) 0%, rgba(139,0,0,0.3) 60%, transparent 100%);
-            border-radius: 50% 50% 20% 20%;
-            animation: riseFlame 6s infinite ease-in;
-            filter: blur(8px);
-        }
-        @keyframes riseFlame {
-            0% { transform: translateY(0) scale(0.6) rotate(0deg); opacity: 0; }
-            20% { opacity: 0.8; }
-            80% { opacity: 0.4; }
-            100% { transform: translateY(-110vh) scale(1.8) rotate(20deg); opacity: 0; }
+            user-select: none;
+            opacity: 0.18;
+            filter: drop-shadow(0 0 60px #FF3030) blur(2px);
+            animation: burningFlame 4s infinite ease-in-out alternate;
         }
 
-        /* Asegurar que el contenido esté por encima del fuego */
+        @keyframes burningFlame {
+            0% {
+                transform: translate(-50%, -48%) scale(1) rotate(-3deg);
+                filter: drop-shadow(0 0 50px #FF3030) blur(2px);
+            }
+            50% {
+                transform: translate(-50%, -52%) scale(1.08) rotate(3deg);
+                filter: drop-shadow(0 0 90px #FF4500) blur(1px);
+            }
+            100% {
+                transform: translate(-50%, -49%) scale(0.96) rotate(-2deg);
+                filter: drop-shadow(0 0 70px #8B0000) blur(3px);
+            }
+        }
+
         header, section, .cta-banner, footer { position: relative; z-index: 10; }
 
         header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(8, 8, 8, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 16px 5%; }
@@ -65,7 +67,7 @@
         .btn-secondary { background: transparent; color: var(--text-main); padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--border-hover); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; }
         .btn-secondary:hover { background: rgba(255, 48, 48, 0.08); border-color: var(--fire-red); }
         .menu-toggle { display: none; background: none; border: none; color: var(--text-main); cursor: pointer; }
-        .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 140px 20px 80px 20px; background: radial-gradient(circle at center, rgba(20,10,10,0.6) 0%, rgba(8,8,8,0.9) 70%); }
+        .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 140px 20px 80px 20px; background: radial-gradient(circle at center, rgba(20,10,10,0.4) 0%, rgba(8,8,8,0.9) 70%); }
         .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 48, 48, 0.1); border: 1px solid var(--border-hover); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; color: var(--fire-red); font-weight: 600; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; }
         .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; letter-spacing: -1px; margin-bottom: 20px; line-height: 1.1; background: linear-gradient(180deg, #FFFFFF 30%, #A1A1AA 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .hero h1 span { background: linear-gradient(135deg, var(--fire-red), #ff7676); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -130,8 +132,8 @@
 </head>
 
 <body>
-    <!-- CAPA DE FUEGO EN MOVIMIENTO -->
-    <div id="fire-background"></div>
+    <!-- FUEGO ENORME FLOTANDO DETRÁS -->
+    <div id="giant-fire-bg">🔥</div>
 
     <header>
         <a href="#inicio" class="logo-container">
@@ -405,34 +407,11 @@
 
     <script>
         lucide.createIcons();
-
-        // GENERADOR DE FUEGO EN MOVIMIENTO DE FONDO
-        const fireContainer = document.getElementById('fire-background');
-        const flameCount = 18; // Cantidad de partículas de fuego flotando
-
-        for (let i = 0; i < flameCount; i++) {
-            const flame = document.createElement('div');
-            flame.classList.add('flame-particle');
-            
-            // Posición, tamaño y tiempos aleatorios para que luzca natural
-            const size = Math.random() * 50 + 30; // entre 30px y 80px
-            flame.style.width = `${size}px`;
-            flame.style.height = `${size * 1.5}px`;
-            flame.style.left = `${Math.random() * 100}vw`;
-            flame.style.animationDuration = `${Math.random() * 4 + 4}s`; // entre 4s y 8s
-            flame.style.animationDelay = `${Math.random() * 5}s`;
-            
-            fireContainer.appendChild(flame);
-        }
-
-        // Menú móvil responsive
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
-
-        // Acordeón de Preguntas Frecuentes (FAQ)
         const faqItems = document.querySelectorAll('.faq-item');
         faqItems.forEach(item => {
             const questionBtn = item.querySelector('.faq-question');
