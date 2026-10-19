@@ -1,329 +1,397 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft Latinoamérica</title>
-    <!-- Google Fonts para un estilo limpio y moderno -->
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>IGNIS AI — Intelligence, Redefined.</title>
+    <meta property="og:title" content="IGNIS AI — Intelligence, Redefined.">
+    <meta property="og:description" content="Tu compañero inteligente para Discord con personalidades únicas.">
+    <meta property="og:type" content="website">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --bg-dark: #0f1115;
-            --bg-card: #181b22;
-            --accent-green: #55ff55;
-            --accent-green-hover: #3faa3f;
-            --text-main: #ffffff;
-            --text-muted: #a0a5b0;
-            --border-color: #2a2e39;
+            --bg-main: #080808;
+            --bg-card: #111111;
+            --bg-card-hover: #161616;
+            --fire-red: #FF3030;
+            --fire-dark: #8B0000;
+            --text-main: #FFFFFF;
+            --text-muted: #A1A1AA;
+            --border-color: rgba(255, 48, 48, 0.15);
+            --border-hover: rgba(255, 48, 48, 0.4);
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow-x: hidden;
-            /* Fondo con patrón sutil inspirado en bloques */
-            background-image: 
-                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 32px 32px;
-            line-height: 1.6;
-        }
-
-        /* HEADER & NAVBAR */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            border-bottom: 2px solid var(--border-color);
-            background: rgba(15, 17, 21, 0.9);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-        }
-
-        .logo-nav {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.85rem;
-            color: var(--accent-green);
-            text-decoration: none;
-            text-shadow: 2px 2px #000;
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        nav a.nav-link {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-        }
-
-        nav a.nav-link:hover {
-            color: var(--accent-green);
-        }
-
-        .btn-discord {
-            background-color: var(--accent-green);
-            color: #0f1115;
-            padding: 10px 18px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 14px rgba(85, 255, 85, 0.2);
-            transition: all 0.2s ease;
-            image-rendering: pixelated;
-        }
-
-        .btn-discord:hover {
-            background-color: var(--accent-green-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(85, 255, 85, 0.3);
-        }
-
-        /* HERO SECTION (INICIO) */
-        .hero {
-            text-align: center;
-            padding: 90px 20px 60px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--text-main);
-            line-height: 1.4;
-            text-shadow: 3px 3px var(--border-color);
-        }
-
-        .hero p {
-            color: var(--text-muted);
-            font-size: 1.15rem;
-            margin-bottom: 30px;
-        }
-
-        /* SECCIÓN DE GALERÍA (VISUALIZACIONES) */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px 80px 20px;
-        }
-
-        .section-title {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            text-align: center;
-            color: var(--accent-green);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background-color: var(--bg-card);
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-green);
-        }
-
-        .card-img-container {
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-            background: #1e222b;
-            position: relative;
-        }
-
-        .card-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .card:hover .card-img-container img {
-            transform: scale(1.05);
-        }
-
-        .card-content {
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: var(--text-main);
-        }
-
-        .card-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-
-        .card-btn {
-            align-self: flex-start;
-            background: transparent;
-            color: var(--accent-green);
-            border: 2px solid var(--accent-green);
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-weight: 600;
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: all 0.2s;
-        }
-
-        .card-btn:hover {
-            background: var(--accent-green);
-            color: #0f1115;
-        }
-
-        /* FOOTER */
-        footer {
-            background-color: #090a0d;
-            border-top: 2px solid var(--border-color);
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        footer .footer-title {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.9rem;
-            color: var(--accent-green);
-            margin-bottom: 15px;
-        }
-
-        footer p {
-            margin-bottom: 10px;
-        }
-
-        /* RESPONSIVE PARA MÓVILES PEQUEÑOS */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-main); color: var(--text-main); font-family: 'Outfit', sans-serif; overflow-x: hidden; line-height: 1.6; }
+        .fire-glow { position: absolute; width: 350px; height: 350px; background: radial-gradient(circle, rgba(255, 48, 48, 0.15) 0%, rgba(139, 0, 0, 0.05) 50%, transparent 70%); border-radius: 50%; z-index: 0; pointer-events: none; filter: blur(60px); }
+        header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(8, 8, 8, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 16px 5%; }
+        .logo-container { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-main); font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.2rem; }
+        .logo-icon { color: var(--fire-red); animation: pulse-glow 3s infinite alternate; }
+        .nav-links { display: flex; align-items: center; gap: 32px; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--fire-red); }
+        .btn-primary { background: linear-gradient(135deg, var(--fire-red), var(--fire-dark)); color: var(--text-main); padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 20px rgba(255, 48, 48, 0.3); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(255, 48, 48, 0.5); }
+        .btn-secondary { background: transparent; color: var(--text-main); padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--border-hover); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-secondary:hover { background: rgba(255, 48, 48, 0.08); border-color: var(--fire-red); }
+        .menu-toggle { display: none; background: none; border: none; color: var(--text-main); cursor: pointer; }
+        .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 140px 20px 80px 20px; background: radial-gradient(circle at center, #140a0a 0%, var(--bg-main) 70%); }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 48, 48, 0.1); border: 1px solid var(--border-hover); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; color: var(--fire-red); font-weight: 600; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; }
+        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; letter-spacing: -1px; margin-bottom: 20px; line-height: 1.1; background: linear-gradient(180deg, #FFFFFF 30%, #A1A1AA 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero h1 span { background: linear-gradient(135deg, var(--fire-red), #ff7676); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { color: var(--text-muted); font-size: clamp(1rem, 2vw, 1.25rem); max-width: 600px; margin-bottom: 40px; }
+        .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+        section { padding: 100px 8%; position: relative; }
+        .section-header { text-align: center; max-width: 700px; margin: 0 auto 60px auto; }
+        .section-header h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; }
+        .section-header p { color: var(--text-muted); font-size: 1.05rem; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 24px; padding: 50px; position: relative; overflow: hidden; }
+        .about-content h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; margin-bottom: 20px; line-height: 1.3; }
+        .about-content p { color: var(--text-muted); margin-bottom: 20px; }
+        .about-visual { display: flex; justify-content: center; align-items: center; position: relative; }
+        .fire-emblem-large { font-size: 8rem; color: var(--fire-red); filter: drop-shadow(0 0 30px rgba(255, 48, 48, 0.4)); animation: pulse-glow 3s infinite alternate; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+        .feature-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 32px; transition: all 0.3s ease; }
+        .feature-card:hover { border-color: var(--border-hover); transform: translateY(-5px); background: var(--bg-card-hover); box-shadow: 0 10px 30px rgba(255, 48, 48, 0.05); }
+        .feature-icon { width: 48px; height: 48px; background: rgba(255, 48, 48, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--fire-red); margin-bottom: 24px; }
+        .feature-card h3 { font-size: 1.2rem; margin-bottom: 12px; font-weight: 600; }
+        .feature-card p { color: var(--text-muted); font-size: 0.95rem; }
+        .personalities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+        .personality-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; }
+        .personality-card:hover { border-color: var(--border-hover); transform: translateY(-5px); }
+        .personality-img { width: 100%; height: 180px; object-fit: cover; background: #141414; border-bottom: 1px solid var(--border-color); }
+        .personality-info { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
+        .personality-info h3 { font-size: 1.25rem; margin-bottom: 8px; font-weight: 600; }
+        .personality-info p { color: var(--text-muted); font-size: 0.9rem; flex-grow: 1; }
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .step-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 40px 30px; position: relative; }
+        .step-number { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 700; color: rgba(255, 48, 48, 0.2); margin-bottom: 16px; }
+        .step-card h3 { font-size: 1.2rem; margin-bottom: 12px; font-weight: 600; }
+        .step-card p { color: var(--text-muted); font-size: 0.95rem; }
+        .faq-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; transition: border-color 0.2s; }
+        .faq-item:hover { border-color: var(--border-hover); }
+        .faq-question { width: 100%; padding: 20px 24px; background: none; border: none; color: var(--text-main); text-align: left; font-size: 1.05rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-answer { padding: 0 24px 20px 24px; color: var(--text-muted); font-size: 0.95rem; display: none; }
+        .faq-item.active .faq-answer { display: block; }
+        .faq-item.active .faq-icon { transform: rotate(180deg); }
+        .faq-icon { transition: transform 0.3s ease; color: var(--fire-red); }
+        .cta-banner { background: linear-gradient(135deg, #140808, #080808); border: 1px solid var(--border-hover); border-radius: 24px; text-align: center; padding: 80px 20px; margin: 0 8% 80px 8%; position: relative; overflow: hidden; }
+        .cta-banner h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 16px; }
+        .cta-banner p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto 32px auto; }
+        footer { border-top: 1px solid var(--border-color); background: #050505; padding: 60px 8% 30px 8%; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; margin-bottom: 20px; color: var(--text-main); }
+        .footer-col p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; max-width: 300px; }
+        .footer-links { display: flex; flex-direction: column; gap: 12px; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--fire-red); }
+        .footer-bottom { border-top: 1px solid var(--border-color); padding-top: 30px; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
+        @keyframes pulse-glow { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(1.08); opacity: 1; filter: drop-shadow(0 0 35px rgba(255, 48, 48, 0.6)); } }
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px;
-            }
-            nav {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 10px;
-            }
-            .hero h1 {
-                font-size: 1.2rem;
-            }
-            .hero p {
-                font-size: 1rem;
-            }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: rgba(8, 8, 8, 0.98); flex-direction: column; padding: 24px; border-bottom: 1px solid var(--border-color); text-align: center; }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .about-grid { grid-template-columns: 1fr; padding: 30px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            section { padding: 70px 5%; }
         }
     </style>
 </head>
-<body>
 
-    <!-- HEADER / NAVEGACIÓN -->
+<body>
+    <div class="fire-glow" style="top: 10%; left: 5%;"></div>
+    <div class="fire-glow" style="top: 50%; right: 5%;"></div>
+
     <header>
-        <a href="#inicio" class="logo-nav">MC LATAM</a>
-        <nav>
-            <a href="#inicio" class="nav-link">Inicio</a>
-            <a href="#visualizaciones" class="nav-link">Visualizaciones</a>
-            <a href="#comunidad" class="nav-link">Comunidad</a>
-            <a href="https://discord.com" target="_blank" class="btn-discord">Discord</a>
+        <a href="#inicio" class="logo-container">
+            <i data-lucide="flame" class="logo-icon"></i>
+            <span>IGNIS AI</span>
+        </a>
+        <nav class="nav-links" id="navLinks">
+            <a href="#inicio">Inicio</a>
+            <a href="#que-es">Características</a>
+            <a href="#personalidades">Personalidades</a>
+            <a href="#como-funciona">Cómo funciona</a>
+            <a href="#faq">FAQ</a>
+            <a href="https://discord.com/api/oauth2/authorize?client_id=1545846469175812197&permissions=274878024704&scope=bot%20applications.commands" target="_blank" class="btn-primary">
+                Invitar al bot <i data-lucide="external-link" size="16"></i>
+            </a>
         </nav>
+        <button class="menu-toggle" id="menuToggle">
+            <i data-lucide="menu" size="24"></i>
+        </button>
     </header>
 
-    <!-- SECCIÓN INICIO (HERO) -->
     <section id="inicio" class="hero">
-        <h1>Minecraft Latinoamérica</h1>
-        <p>El punto de encuentro definitivo para constructores, aventureros y creadores de toda la región.</p>
+        <div class="hero-badge">
+            <i data-lucide="sparkles" size="14"></i> Inteligencia artificial para Discord
+        </div>
+        <h1>INTELLIGENCE, <span>REDEFINED.</span></h1>
+        <p>Conoce IGNIS AI, tu compañero inteligente para Discord impulsado por la mejor tecnología conversacional.</p>
+        <div class="hero-buttons">
+            <a href="https://discord.com/api/oauth2/authorize?client_id=1545846469175812197&permissions=274878024704&scope=bot%20applications.commands" target="_blank" class="btn-primary">
+                Descubrir IGNIS AI <i data-lucide="arrow-right" size="16"></i>
+            </a>
+            <a href="https://discord.gg/xSS53bQ6cY" target="_blank" class="btn-secondary">
+                Únete a nuestra comunidad <i data-lucide="message-square" size="16"></i>
+            </a>
+        </div>
     </section>
 
-    <!-- SECCIÓN VISUALIZACIONES (GALERÍA) -->
-    <main id="visualizaciones" class="container">
-        <h2 class="section-title">Visualizaciones</h2>
-        
-        <div class="gallery-grid">
-            <!-- Tarjeta 1 -->
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600&auto=format&fit=crop&q=80" alt="Spawn Principal">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Spawn Principal</h3>
-                    <p class="card-desc">Un recorrido detallado por nuestra monumental zona de inicio construida en estilo medieval moderno.</p>
-                    <a href="#" class="card-btn">Ver más</a>
+    <section id="que-es">
+        <div class="about-grid">
+            <div class="about-content">
+                <span style="color: var(--fire-red); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Mucho más que un bot</span>
+                <h3 style="margin-top: 10px;">Transforma la actividad de tu comunidad</h3>
+                <p>IGNIS AI lleva las conversaciones impulsadas por inteligencia artificial a Discord, combinando interacciones inteligentes con personalidades únicas para ofrecer una experiencia más entretenida e interactiva.</p>
+                <p>Diseñado para integrarse con fluidez en tus canales, manteniendo siempre respuestas de alta calidad y un rendimiento excepcional.</p>
+            </div>
+            <div class="about-visual">
+                <div class="fire-emblem-large">🔥</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="caracteristicas">
+        <div class="section-header">
+            <h2>Características Principales</h2>
+            <p>Todo lo que necesitas para llevar la interacción de tu servidor al siguiente nivel.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i data-lucide="bot"></i></div>
+                <h3>Conversaciones con IA</h3>
+                <p>Interactúa con inteligencia artificial directamente desde los canales de texto de tu servidor de Discord.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i data-lucide="users"></i></div>
+                <h3>Personalidades Únicas</h3>
+                <p>Experimenta diferentes estilos de conversación inspirados en personajes célebres y queridos por todos.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i data-lucide="zap"></i></div>
+                <h3>Experiencia Interactiva</h3>
+                <p>Disfruta de dinámicas entretenidas que mantienen a tu comunidad activa y participativa todo el día.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i data-lucide="refresh-cw"></i></div>
+                <h3>Mejoras Continuas</h3>
+                <p>Descubre novedades constantes, correcciones y actualizaciones para asegurar la mejor experiencia.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="personalidades">
+        <div class="section-header">
+            <h2>Personalidades Disponibles</h2>
+            <p>Elige entre seis estilos diferentes para darle vida y humor a tus chats.</p>
+        </div>
+        <div class="personalities-grid">
+            <div class="personality-card">
+                <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop&q=80" alt="Homero Simpson" class="personality-img">
+                <div class="personality-info">
+                    <h3>Homero Simpson</h3>
+                    <p>El clásico humor relajado y ocurrencias divertidas de la familia más famosa de Springfield.</p>
                 </div>
             </div>
-
-            <!-- Tarjeta 2 -->
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="https://images.unsplash.com/photo-1563089145-599997674d42?w=600&auto=format&fit=crop&q=80" alt="Granjas Técnicas">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Granjas Técnicas</h3>
-                    <p class="card-desc">Exploración de las estructuras de automatización más avanzadas y eficientes de la comunidad.</p>
-                    <a href="#" class="card-btn">Ver más</a>
+            <div class="personality-card">
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&auto=format&fit=crop&q=80" alt="Bob Esponja" class="personality-img">
+                <div class="personality-info">
+                    <h3>Bob Esponja</h3>
+                    <p>Una energía imparable, optimismo contagioso y diversión desde el fondo del mar.</p>
                 </div>
             </div>
-
-            <!-- Tarjeta 3 -->
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=600&auto=format&fit=crop&q=80" alt="Paisajes y Shaders">
+            <div class="personality-card">
+                <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=600&auto=format&fit=crop&q=80" alt="Shrek" class="personality-img">
+                <div class="personality-info">
+                    <h3>Shrek</h3>
+                    <p>Respuestas directas, un toque de sarcasmo y el estilo único del ogro de los pantanos.</p>
                 </div>
-                <div class="card-content">
-                    <h3 class="card-title">Paisajes y Shaders</h3>
-                    <p class="card-desc">Capturas cinematográficas usando configuraciones gráficas hiperrealistas en nuestros mundos.</p>
-                    <a href="#" class="card-btn">Ver más</a>
+            </div>
+            <div class="personality-card">
+                <img src="https://images.unsplash.com/photo-1563089145-599997674d42?w=600&auto=format&fit=crop&q=80" alt="Stitch" class="personality-img">
+                <div class="personality-info">
+                    <h3>Stitch</h3>
+                    <p>Caos adorable, frases cortas y mucha energía desbordante en cada interacción.</p>
+                </div>
+            </div>
+            <div class="personality-card">
+                <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600&auto=format&fit=crop&q=80" alt="Pocoyó" class="personality-img">
+                <div class="personality-info">
+                    <h3>Pocoyó</h3>
+                    <p>Un tono amigable, curioso e inocente ideal para charlas ligeras y divertidas.</p>
+                </div>
+            </div>
+            <div class="personality-card">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80" alt="Mickey Mouse" class="personality-img">
+                <div class="personality-info">
+                    <h3>Mickey Mouse</h3>
+                    <p>Carisma tradicional, positividad y una actitud siempre alegre para saludar a todos.</p>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
 
-    <!-- FOOTER -->
-    <footer id="comunidad">
-        <div class="footer-title">Minecraft Latinoamérica</div>
-        <p>Únete a nuestra comunidad y forma parte de las próximas grandes aventuras.</p>
-        <p style="font-size: 0.8rem; color: #666; margin-top: 20px;">© 2026 Minecraft Latam. No está afiliado de manera oficial con Mojang o Microsoft.</p>
+    <section id="como-funciona">
+        <div class="section-header">
+            <h2>¿Cómo Funciona?</h2>
+            <p>Comienza a utilizar IGNIS AI en tu servidor en solo tres sencillos pasos.</p>
+        </div>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">01</div>
+                <h3>Invita a IGNIS AI</h3>
+                <p>Añade el bot a tu servidor de Discord utilizando nuestro enlace oficial autorizado.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">02</div>
+                <h3>Elige una personalidad</h3>
+                <p>Utiliza los comandos de barra disponibles para seleccionar el estilo de personaje que prefieras.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">03</div>
+                <h3>Comienza a interactuar</h3>
+                <p>Disfruta de conversaciones fluidas con inteligencia artificial y el toque único que elegiste.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="section-header">
+            <h2>Preguntas Frecuentes</h2>
+            <p>Resuelve tus dudas sobre el funcionamiento y uso de IGNIS AI.</p>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">
+                    ¿Qué es IGNIS AI?
+                    <i data-lucide="chevron-down" class="faq-icon" size="20"></i>
+                </button>
+                <div class="faq-answer">
+                    IGNIS AI es un bot de Discord diseñado para ofrecer experiencias conversacionales impulsadas por inteligencia artificial y personalidades divertidas.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    ¿Qué puede hacer IGNIS AI?
+                    <i data-lucide="chevron-down" class="faq-icon" size="20"></i>
+                </button>
+                <div class="faq-answer">
+                    Permite charlar con IA en los canales de Discord adoptando diferentes estilos de personajes icónicos para entretener a tu comunidad.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    ¿Qué personalidades están disponibles?
+                    <i data-lucide="chevron-down" class="faq-icon" size="20"></i>
+                </button>
+                <div class="faq-answer">
+                    Actualmente contamos con 6 personalidades: Homero Simpson, Bob Esponja, Shrek, Stitch, Pocoyó y Mickey Mouse.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    ¿Cómo utilizo el comando de personalidades?
+                    <i data-lucide="chevron-down" class="faq-icon" size="20"></i>
+                </button>
+                <div class="faq-answer">
+                    Solo debes escribir los comandos de barra diagonal (`/`) configurados en tu servidor de Discord para seleccionar y alternar entre los personajes.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    ¿IGNIS AI es gratuito?
+                    <i data-lucide="chevron-down" class="faq-icon" size="20"></i>
+                </button>
+                <div class="faq-answer">
+                    Sí, puedes invitar y utilizar las funciones principales de IGNIS AI de forma totalmente accesible en tu servidor.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    ¿Por qué la IA puede tardar en responder?
+                    <i data-lucide="chevron-down" class="faq-icon" size="20"></i>
+                </button>
+                <div class="faq-answer">
+                    El tiempo de respuesta puede variar según el estado de los servicios de API y las condiciones de tráfico de la red en un momento determinado.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    ¿Dónde puedo recibir soporte?
+                    <i data-lucide="chevron-down" class="faq-icon" size="20"></i>
+                </button>
+                <div class="faq-answer">
+                    Puedes unirte a nuestro servidor oficial de soporte en Discord a través del enlace disponible en la web para reportar dudas o consultas.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="cta-banner">
+        <h2>¿LISTO PARA DESCUBRIR IGNIS AI?</h2>
+        <p>Lleva una nueva experiencia de inteligencia artificial a tu comunidad de Discord.</p>
+        <div class="hero-buttons">
+            <a href="https://discord.com/api/oauth2/authorize?client_id=1545846469175812197&permissions=274878024704&scope=bot%20applications.commands" target="_blank" class="btn-primary">
+                Invitar a IGNIS AI <i data-lucide="external-link" size="16"></i>
+            </a>
+            <a href="https://discord.gg/xSS53bQ6cY" target="_blank" class="btn-secondary">
+                Unirse al servidor de soporte <i data-lucide="message-square" size="16"></i>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo-container" style="margin-bottom: 15px;">
+                    <i data-lucide="flame" class="logo-icon"></i>
+                    <span>IGNIS AI</span>
+                </div>
+                <p>Tu compañero inteligente para Discord con personalidades únicas y tecnología avanzada.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navegación</h4>
+                <div class="footer-links">
+                    <a href="#inicio">Inicio</a>
+                    <a href="#que-es">Características</a>
+                    <a href="#personalidades">Personalidades</a>
+                    <a href="#faq">Preguntas frecuentes</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Comunidad</h4>
+                <div class="footer-links">
+                    <a href="https://discord.com/api/oauth2/authorize?client_id=1545846469175812197&permissions=274878024704&scope=bot%20applications.commands" target="_blank">Invitar al bot</a>
+                    <a href="https://discord.gg/xSS53bQ6cY" target="_blank">Servidor de soporte</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 IGNIS AI. Todos los derechos reservados. Intelligence, Redefined.</p>
+        </div>
     </footer>
 
+    <script>
+        lucide.createIcons();
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const questionBtn = item.querySelector('.faq-question');
+            questionBtn.addEventListener('click', () => {
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                item.classList.toggle('active');
+            });
+        });
+    </script>
 </body>
 </html>
-
