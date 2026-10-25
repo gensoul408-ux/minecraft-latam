@@ -3,122 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IGNIS AI — Intelligence, Redefined.</title>
-    <meta property="og:title" content="IGNIS AI — Intelligence, Redefined.">
-    <meta property="og:description" content="Tu bot de moderación inteligente y conversación con IA para Discord.">
+    <title>WhiteBear — The Arctic Intelligence.</title>
+    <meta property="og:title" content="WhiteBear — The Arctic Intelligence.">
+    <meta property="og:description" content="Tu bot inteligente para Discord con estética polar y máxima eficiencia.">
     <meta property="og:type" content="website">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --bg-main: #080808;
-            --bg-card: #111111;
-            --bg-card-hover: #161616;
-            --fire-red: #FF3030;
-            --fire-dark: #8B0000;
-            --text-main: #FFFFFF;
-            --text-muted: #A1A1AA;
-            --border-color: rgba(255, 48, 48, 0.15);
-            --border-hover: rgba(255, 48, 48, 0.4);
+            --bg-main: #f4f6f9;
+            --bg-card: #ffffff;
+            --bg-card-hover: #eef2f7;
+            --polar-blue: #0070f3;
+            --polar-dark: #111827;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --border-color: rgba(0, 112, 243, 0.15);
+            --border-hover: rgba(0, 112, 243, 0.4);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: var(--bg-main); color: var(--text-main); font-family: 'Outfit', sans-serif; overflow-x: hidden; line-height: 1.6; position: relative; }
         
-        /* FUEGO GIGANTE EN MOVIMIENTO DE FONDO */
-        #giant-fire-bg {
+        #giant-bear-bg {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: clamp(20rem, 60vw, 45rem);
+            font-size: clamp(15rem, 50vw, 38rem);
             pointer-events: none;
             z-index: 0;
             user-select: none;
-            opacity: 0.18;
-            filter: drop-shadow(0 0 60px #FF3030) blur(2px);
-            animation: burningFlame 4s infinite ease-in-out alternate;
+            opacity: 0.08;
+            filter: drop-shadow(0 0 40px #0070f3) blur(1px);
+            animation: floatBear 5s infinite ease-in-out alternate;
         }
 
-        @keyframes burningFlame {
-            0% { transform: translate(-50%, -48%) scale(1) rotate(-3deg); filter: drop-shadow(0 0 50px #FF3030) blur(2px); }
-            50% { transform: translate(-50%, -52%) scale(1.08) rotate(3deg); filter: drop-shadow(0 0 90px #FF4500) blur(1px); }
-            100% { transform: translate(-50%, -49%) scale(0.96) rotate(-2deg); filter: drop-shadow(0 0 70px #8B0000) blur(3px); }
+        @keyframes floatBear {
+            0% { transform: translate(-50%, -48%) scale(1) rotate(-1deg); }
+            50% { transform: translate(-50%, -52%) scale(1.05) rotate(1deg); }
+            100% { transform: translate(-50%, -49%) scale(0.98) rotate(-1deg); }
         }
 
         header, section, .cta-banner, footer { position: relative; z-index: 10; }
 
-        header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(8, 8, 8, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 16px 5%; }
-        .logo-container { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-main); font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.2rem; }
-        .logo-icon { color: var(--fire-red); animation: pulse-glow 3s infinite alternate; }
+        header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(244, 246, 249, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 16px 5%; }
+        .logo-container { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--polar-dark); font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.2rem; }
+        .logo-icon { color: var(--polar-blue); }
         .nav-links { display: flex; align-items: center; gap: 32px; }
         .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
-        .nav-links a:hover { color: var(--fire-red); }
-        .btn-primary { background: linear-gradient(135deg, var(--fire-red), var(--fire-dark)); color: var(--text-main); padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 20px rgba(255, 48, 48, 0.3); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(255, 48, 48, 0.5); }
-        .btn-secondary { background: transparent; color: var(--text-main); padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--border-hover); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; }
-        .btn-secondary:hover { background: rgba(255, 48, 48, 0.08); border-color: var(--fire-red); }
-        .menu-toggle { display: none; background: none; border: none; color: var(--text-main); cursor: pointer; }
+        .nav-links a:hover { color: var(--polar-blue); }
         
-        .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 140px 20px 80px 20px; background: radial-gradient(circle at center, rgba(20,10,10,0.4) 0%, rgba(8,8,8,0.9) 70%); }
-        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 48, 48, 0.1); border: 1px solid var(--border-hover); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; color: var(--fire-red); font-weight: 600; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; }
-        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; letter-spacing: -1px; margin-bottom: 20px; line-height: 1.1; background: linear-gradient(180deg, #FFFFFF 30%, #A1A1AA 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero h1 span { background: linear-gradient(135deg, var(--fire-red), #ff7676); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .btn-primary { background: linear-gradient(135deg, #0070f3, #0051b3); color: #ffffff; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 20px rgba(0, 112, 243, 0.25); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(0, 112, 243, 0.4); }
+        
+        .btn-secondary { background: transparent; color: var(--polar-dark); padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--polar-dark); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-secondary:hover { background: rgba(17, 24, 39, 0.05); border-color: var(--polar-blue); color: var(--polar-blue); }
+        
+        .menu-toggle { display: none; background: none; border: none; color: var(--polar-dark); cursor: pointer; }
+        
+        .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 140px 20px 80px 20px; background: radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, rgba(244,246,249,0.95) 70%); }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0, 112, 243, 0.08); border: 1px solid var(--border-hover); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; color: var(--polar-blue); font-weight: 600; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; }
+        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; letter-spacing: -1px; margin-bottom: 20px; line-height: 1.1; color: var(--polar-dark); }
+        .hero h1 span { color: var(--polar-blue); }
         .hero p { color: var(--text-muted); font-size: clamp(1rem, 2vw, 1.25rem); max-width: 600px; margin-bottom: 40px; }
         .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
         
         section { padding: 100px 8%; position: relative; }
         .section-header { text-align: center; max-width: 700px; margin: 0 auto 60px auto; }
-        .section-header h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; }
+        .section-header h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; color: var(--polar-dark); }
         .section-header p { color: var(--text-muted); font-size: 1.05rem; }
         
-        /* TARJETAS DE MÓDULOS DE COMANDOS */
         .modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .module-card { background: rgba(17,17,17,0.85); backdrop-filter: blur(8px); border: 1px solid var(--border-color); border-radius: 20px; padding: 32px; transition: all 0.3s ease; }
-        .module-card:hover { border-color: var(--border-hover); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255, 48, 48, 0.08); }
+        .module-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; padding: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: all 0.3s ease; }
+        .module-card:hover { border-color: var(--border-hover); transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0, 112, 243, 0.08); }
         .module-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 16px; }
-        .module-icon { color: var(--fire-red); }
-        .module-title { font-size: 1.3rem; font-weight: 700; font-family: 'Space Grotesk', sans-serif; }
+        .module-icon { color: var(--polar-blue); }
+        .module-title { font-size: 1.3rem; font-weight: 700; font-family: 'Space Grotesk', sans-serif; color: var(--polar-dark); }
         .command-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-        .command-item { font-size: 0.92rem; color: var(--text-muted); line-height: 1.4; }
-        .cmd-code { background: rgba(255, 48, 48, 0.12); color: var(--fire-red); padding: 2px 8px; border-radius: 6px; font-family: monospace; font-weight: 600; font-size: 0.88rem; border: 1px solid rgba(255, 48, 48, 0.2); }
+        .command-item { font-size: 0.92rem; color: var(--text-muted); line-height: 1.4; display: flex; justify-content: space-between; align-items: center; }
+        .cmd-code { background: rgba(0, 112, 243, 0.08); color: var(--polar-blue); padding: 2px 8px; border-radius: 6px; font-family: monospace; font-weight: 600; font-size: 0.85rem; }
+        .badge-soon { background: #e5e7eb; color: #374151; font-size: 0.75rem; padding: 2px 8px; border-radius: 12px; font-weight: 600; text-transform: uppercase; }
 
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; background: rgba(17,17,17,0.85); backdrop-filter: blur(8px); border: 1px solid var(--border-color); border-radius: 24px; padding: 50px; position: relative; overflow: hidden; }
-        .about-content h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; margin-bottom: 20px; line-height: 1.3; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 24px; padding: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+        .about-content h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; margin-bottom: 20px; color: var(--polar-dark); }
         .about-content p { color: var(--text-muted); margin-bottom: 20px; }
-        .about-visual { display: flex; justify-content: center; align-items: center; position: relative; }
-        .fire-emblem-large { font-size: 8rem; color: var(--fire-red); filter: drop-shadow(0 0 30px rgba(255, 48, 48, 0.4)); animation: pulse-glow 3s infinite alternate; }
+        .about-visual { display: flex; justify-content: center; align-items: center; font-size: 8rem; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
 
         .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .step-card { background: rgba(17,17,17,0.85); backdrop-filter: blur(8px); border: 1px solid var(--border-color); border-radius: 16px; padding: 40px 30px; position: relative; }
-        .step-number { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 700; color: rgba(255, 48, 48, 0.2); margin-bottom: 16px; }
-        .step-card h3 { font-size: 1.2rem; margin-bottom: 12px; font-weight: 600; }
+        .step-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 40px 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+        .step-number { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 700; color: rgba(0, 112, 243, 0.2); margin-bottom: 16px; }
+        .step-card h3 { font-size: 1.2rem; margin-bottom: 12px; font-weight: 600; color: var(--polar-dark); }
         .step-card p { color: var(--text-muted); font-size: 0.95rem; }
 
         .faq-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
-        .faq-item { background: rgba(17,17,17,0.85); backdrop-filter: blur(8px); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; transition: border-color 0.2s; }
-        .faq-item:hover { border-color: var(--border-hover); }
-        .faq-question { width: 100%; padding: 20px 24px; background: none; border: none; color: var(--text-main); text-align: left; font-size: 1.05rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+        .faq-question { width: 100%; padding: 20px 24px; background: none; border: none; color: var(--polar-dark); text-align: left; font-size: 1.05rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
         .faq-answer { padding: 0 24px 20px 24px; color: var(--text-muted); font-size: 0.95rem; display: none; }
         .faq-item.active .faq-answer { display: block; }
         .faq-item.active .faq-icon { transform: rotate(180deg); }
-        .faq-icon { transition: transform 0.3s ease; color: var(--fire-red); }
+        .faq-icon { transition: transform 0.3s ease; color: var(--polar-blue); }
 
-        .cta-banner { background: linear-gradient(135deg, rgba(20,8,8,0.9), rgba(8,8,8,0.95)); border: 1px solid var(--border-hover); border-radius: 24px; text-align: center; padding: 80px 20px; margin: 0 8% 80px 8%; position: relative; overflow: hidden; backdrop-filter: blur(10px); }
+        .cta-banner { background: linear-gradient(135deg, #111827, #1f2937); color: #ffffff; border-radius: 24px; text-align: center; padding: 80px 20px; margin: 0 8% 80px 8%; position: relative; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
         .cta-banner h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 16px; }
-        .cta-banner p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto 32px auto; }
+        .cta-banner p { color: #9ca3af; font-size: 1.1rem; max-width: 600px; margin: 0 auto 32px auto; }
 
-        footer { border-top: 1px solid var(--border-color); background: rgba(5,5,5,0.95); padding: 60px 8% 30px 8%; }
+        footer { border-top: 1px solid var(--border-color); background: #ffffff; padding: 60px 8% 30px 8%; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-        .footer-col h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; margin-bottom: 20px; color: var(--text-main); }
+        .footer-col h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; margin-bottom: 20px; color: var(--polar-dark); }
         .footer-col p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; max-width: 300px; }
         .footer-links { display: flex; flex-direction: column; gap: 12px; }
         .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
-        .footer-links a:hover { color: var(--fire-red); }
+        .footer-links a:hover { color: var(--polar-blue); }
         .footer-bottom { border-top: 1px solid var(--border-color); padding-top: 30px; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
 
-        @keyframes pulse-glow { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(1.08); opacity: 1; filter: drop-shadow(0 0 35px rgba(255, 48, 48, 0.6)); } }
         @media (max-width: 768px) {
-            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: rgba(8, 8, 8, 0.98); flex-direction: column; padding: 24px; border-bottom: 1px solid var(--border-color); text-align: center; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: #ffffff; flex-direction: column; padding: 24px; border-bottom: 1px solid var(--border-color); text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
             .about-grid { grid-template-columns: 1fr; padding: 30px; }
@@ -129,266 +128,6 @@
 </head>
 
 <body>
-    <div id="giant-fire-bg">🔥</div>
-
-    <header>
-        <a href="#inicio" class="logo-container">
-            <i data-lucide="flame" class="logo-icon"></i>
-            <span>IGNIS AI</span>
-        </a>
-        <nav class="nav-links" id="navLinks">
-            <a href="#inicio">Inicio</a>
-            <a href="#que-es">¿Qué es?</a>
-            <a href="#modulos">Comandos</a>
-            <a href="#como-funciona">Cómo funciona</a>
-            <a href="#faq">FAQ</a>
-            <a href="https://discord.com/api/oauth2/authorize?client_id=1545846469175812197&permissions=274878024704&scope=bot%20applications.commands" target="_blank" class="btn-primary">
-                Invitar al bot <i data-lucide="external-link" size="16"></i>
-            </a>
-        </nav>
-        <button class="menu-toggle" id="menuToggle">
-            <i data-lucide="menu" size="24"></i>
-        </button>
-    </header>
-
-    <section id="inicio" class="hero">
-        <div class="hero-badge">
-            <i data-lucide="shield-check" size="14"></i> AutoModeración e Inteligencia para Discord
-        </div>
-        <h1>INTELLIGENCE, <span>REDEFINED.</span></h1>
-        <p>Potencia tu servidor con AutoModeración Inteligente, herramientas avanzadas de control disciplinario e integración con IA.</p>
-        <div class="hero-buttons">
-            <a href="https://discord.com/api/oauth2/authorize?client_id=1545846469175812197&permissions=274878024704&scope=bot%20applications.commands" target="_blank" class="btn-primary">
-                Descubrir IGNIS AI <i data-lucide="arrow-right" size="16"></i>
-            </a>
-            <a href="https://discord.gg/xSS53bQ6cY" target="_blank" class="btn-secondary">
-                Únete a nuestra comunidad <i data-lucide="message-square" size="16"></i>
-            </a>
-        </div>
-    </section>
-
-    <section id="que-es">
-        <div class="about-grid">
-            <div class="about-content">
-                <span style="color: var(--fire-red); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Sistema Integral de Moderación</span>
-                <h3 style="margin-top: 10px;">Protección activa y control total para tu servidor</h3>
-                <p>IGNIS AI no solo integra respuestas inteligentes, sino un completo directorio de utilidades organizadas por categorías para mantener tu comunidad segura y organizada.</p>
-                <p>Desde filtros anti-spam automatizados hasta herramientas avanzadas de auditoría y gestión de canales en tiempo real.</p>
-            </div>
-            <div class="about-visual">
-                <div class="fire-emblem-large">🔥</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- NUEVA SECCIÓN: MÓDULOS Y COMANDOS ACTUALIZADOS -->
-    <section id="modulos">
-        <div class="section-header">
-            <h2>Panel General de Comandos</h2>
-            <p>Directorio completo de utilidades organizadas por categoría de sistema.</p>
-        </div>
-        <div class="modules-grid">
-            
-            <!-- MÓDULO 1: AUTOMODERACIÓN -->
-            <div class="module-card">
-                <div class="module-header">
-                    <i data-lucide="bot" class="module-icon" size="24"></i>
-                    <div class="module-title">AutoModeración Inteligente (Activo)</div>
-                </div>
-                <ul class="command-list">
-                    <li class="command-item"><span class="cmd-code">Filtro Anti-Invite</span> — Bloquea invitaciones a otros servidores.</li>
-                    <li class="command-item"><span class="cmd-code">Filtro Anti-Links</span> — Bloquea enlaces web no permitidos.</li>
-                    <li class="command-item"><span class="cmd-code">Filtro Anti-Spam</span> — Detecta mensajes repetidos consecutivos.</li>
-                    <li class="command-item"><span class="cmd-code">Filtro Menciones</span> — Bloquea spam de menciones (>=5).</li>
-                    <li class="command-item"><span class="cmd-code">Filtro Palabras</span> — Filtra lenguaje prohibido.</li>
-                    <li class="command-item"><span class="cmd-code">/white</span> — Exime canales, roles o usuarios del AutoMod.</li>
-                    <li class="command-item"><span class="cmd-code">/crear_100_automod</span> — Genera reglas masivas para insignia.</li>
-                </ul>
-            </div>
-
-            <!-- MÓDULO 2: MODERACIÓN DISCIPLINARIA -->
-            <div class="module-card">
-                <div class="module-header">
-                    <i data-lucide="alert-triangle" class="module-icon" size="24"></i>
-                    <div class="module-title">Moderación y Control Disciplinario</div>
-                </div>
-                <ul class="command-list">
-                    <li class="command-item"><span class="cmd-code">/warn</span> — Emite advertencias con escalado automático.</li>
-                    <li class="command-item"><span class="cmd-code">/modhistory</span> — Audita el historial de advertencias.</li>
-                    <li class="command-item"><span class="cmd-code">/clearwarns</span> — Restablece el expediente disciplinario.</li>
-                    <li class="command-item"><span class="cmd-code">/timeout /untimeout</span> — Aísla o libera temporalmente.</li>
-                    <li class="command-item"><span class="cmd-code">/kick</span> — Expulsa a un miembro del servidor.</li>
-                    <li class="command-item"><span class="cmd-code">/ban /unban</span> — Bloquea o indulta mediante ID.</li>
-                    <li class="command-item"><span class="cmd-code">/softban</span> — Expulsa depurando mensajes de 24h.</li>
-                </ul>
-            </div>
-
-            <!-- MÓDULO 3: CANALES Y CONFIGURACIÓN -->
-            <div class="module-card">
-                <div class="module-header">
-                    <i data-lucide="settings" class="module-icon" size="24"></i>
-                    <div class="module-title">Canales, Auditoría y Configuración</div>
-                </div>
-                <ul class="command-list">
-                    <li class="command-item"><span class="cmd-code">/purge</span> — Purga masiva de mensajes (1-100).</li>
-                    <li class="command-item"><span class="cmd-code">/slowmode</span> — Ajusta restricción de velocidad en canales.</li>
-                    <li class="command-item"><span class="cmd-code">/lock /unlock</span> — Bloquea o libera canales de texto.</li>
-                    <li class="command-item"><span class="cmd-code">/logs</span> — Asigna canal de auditoría local del servidor.</li>
-                    <li class="command-item"><span class="cmd-code">/setcanal</span> — Configura canal exclusivo de chat de IA.</li>
-                    <li class="command-item"><span class="cmd-code">/idioma</span> — Ajusta preferencia de idioma personal.</li>
-                    <li class="command-item"><span class="cmd-code">/servers</span> — Muestra estadísticas globales del bot.</li>
-                </ul>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="como-funciona">
-        <div class="section-header">
-            <h2>¿Cómo Funciona?</h2>
-            <p>Comienza a utilizar IGNIS AI en tu servidor en solo tres sencillos pasos.</p>
-        </div>
-        <div class="steps-grid">
-            <div class="step-card">
-                <div class="step-number">01</div>
-                <h3>Invita a IGNIS AI</h3>
-                <p>Añade el bot a tu servidor de Discord utilizando nuestro enlace oficial autorizado.</p>
-            </div>
-            <div class="step-card">
-                <div class="step-number">02</div>
-                <h3>Configura los permisos</h3>
-                <p>Ajusta el canal de IA con <span class="cmd-code">/setcanal</span> y configura las reglas de AutoMod o Logs.</p>
-            </div>
-            <div class="step-card">
-                <div class="step-number">03</div>
-                <h3>Mantén tu servidor seguro</h3>
-                <p>Disfruta de protección automática y herramientas eficaces para tu equipo de moderación.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="faq">
-        <div class="section-header">
-            <h2>Preguntas Frecuentes</h2>
-            <p>Resuelve tus dudas sobre el funcionamiento y uso de IGNIS AI.</p>
-        </div>
-        <div class="faq-container">
-            <div class="faq-item">
-                <button class="faq-question">
-                    ¿Qué es IGNIS AI?
-                    <i data-lucide="chevron-down" class="faq-icon" size="20"></i>
-                </button>
-                <div class="faq-answer">
-                    IGNIS AI es un bot para Discord que combina AutoModeración Inteligente, herramientas avanzadas de moderación disciplinaria y funciones conversacionales impulsadas por IA.
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">
-                    ¿Cómo activo el filtro de AutoModeración?
-                    <i data-lucide="chevron-down" class="faq-icon" size="20"></i>
-                </button>
-                <div class="faq-answer">
-                    El sistema cuenta con reglas automáticas para filtrar invitaciones, links no permitidos, spam, lenguaje prohibido y menciones masivas. Puedes configurar exenciones con el comando `/white`.
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">
-                    ¿Cómo configuro el canal de Chat con IA?
-                    <i data-lucide="chevron-down" class="faq-icon" size="20"></i>
-                </button>
-                <div class="faq-answer">
-                    Utiliza el comando `/setcanal` para asignar un canal exclusivo donde el bot responderá interacciones conversacionales.
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">
-                    ¿IGNIS AI es gratuito?
-                    <i data-lucide="chevron-down" class="faq-icon" size="20"></i>
-                </button>
-                <div class="faq-answer">
-                    Sí, puedes invitar y utilizar las funciones principales de IGNIS AI de forma totalmente gratuita en tu servidor.
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">
-                    ¿Dónde puedo recibir soporte?
-                    <i data-lucide="chevron-down" class="faq-icon" size="20"></i>
-                </button>
-                <div class="faq-answer">
-                    Puedes unirte a nuestro servidor oficial de soporte en Discord a través del enlace disponible en la web para resolver dudas o reportar problemas.
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="cta-banner">
-        <h2>¿LISTO PARA DESCUBRIR IGNIS AI?</h2>
-        <p>Lleva la mejor protección y experiencia de IA a tu comunidad de Discord.</p>
-        <div class="hero-buttons">
-            <a href="https://discord.com/api/oauth2/authorize?client_id=1545846469175812197&permissions=274878024704&scope=bot%20applications.commands" target="_blank" class="btn-primary">
-                Invitar a IGNIS AI <i data-lucide="external-link" size="16"></i>
-            </a>
-            <a href="https://discord.gg/xSS53bQ6cY" target="_blank" class="btn-secondary">
-                Unirse al servidor de soporte <i data-lucide="message-square" size="16"></i>
-            </a>
-        </div>
-    </div>
-
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <div class="logo-container" style="margin-bottom: 15px;">
-                    <i data-lucide="flame" class="logo-icon"></i>
-                    <span>IGNIS AI</span>
-                </div>
-                <p>Tu sistema inteligente de moderación y herramientas avanzadas para Discord.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Navegación</h4>
-                <div class="footer-links">
-                    <a href="#inicio">Inicio</a>
-                    <a href="#que-es">¿Qué es?</a>
-                    <a href="#modulos">Comandos</a>
-                    <a href="#faq">Preguntas frecuentes</a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4>Comunidad</h4>
-                <div class="footer-links">
-                    <a href="https://discord.com/api/oauth2/authorize?client_id=1545846469175812197&permissions=274878024704&scope=bot%20applications.commands" target="_blank">Invitar al bot</a>
-                    <a href="https://discord.gg/xSS53bQ6cY" target="_blank">Servidor de soporte</a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2026 IGNIS AI. Todos los derechos reservados. Intelligence, Redefined.</p>
-        </div>
-    </footer>
-
-    <script>
-        lucide.createIcons();
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            const questionBtn = item.querySelector('.faq-question');
-            questionBtn.addEventListener('click', () => {
-                faqItems.forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.classList.remove('active');
-                    }
-                });
-                item.classList.toggle('active');
-            });
-        });
-    </script>
-</body>
-</html>
-<body>
-    <!-- OSO POLAR GIGANTE FLOTANDO DE FONDO -->
     <div id="giant-bear-bg">🐻‍❄️</div>
 
     <header>
@@ -441,7 +180,6 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE COMANDOS / MÓDULOS CON PRÓXIMAMENTE -->
     <section id="modulos">
         <div class="section-header">
             <h2>Panel de Comandos</h2>
@@ -449,7 +187,6 @@
         </div>
         <div class="modules-grid">
             
-            <!-- MÓDULO 1: AUTOMODERACIÓN -->
             <div class="module-card">
                 <div class="module-header">
                     <i data-lucide="shield-alert" class="module-icon" size="24"></i>
@@ -466,7 +203,6 @@
                 </ul>
             </div>
 
-            <!-- MÓDULO 2: MODERACIÓN DISCIPLINARIA -->
             <div class="module-card">
                 <div class="module-header">
                     <i data-lucide="gavel" class="module-icon" size="24"></i>
@@ -483,7 +219,6 @@
                 </ul>
             </div>
 
-            <!-- MÓDULO 3: CANALES Y CONFIGURACIÓN -->
             <div class="module-card">
                 <div class="module-header">
                     <i data-lucide="sliders" class="module-icon" size="24"></i>
