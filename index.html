@@ -1,161 +1,3 @@
-<!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhiteBear — The Arctic Intelligence.</title>
-    <meta property="og:title" content="WhiteBear — The Arctic Intelligence.">
-    <meta property="og:description" content="Tu bot inteligente para Discord con estética oscura ártica y máxima eficiencia.">
-    <meta property="og:type" content="website">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        :root {
-            --bg-main: #05070b;
-            --bg-card: #0d1118;
-            --bg-card-hover: #131923;
-            --polar-blue: #38bdf8;
-            --polar-glow: rgba(56, 189, 248, 0.25);
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --border-color: rgba(56, 189, 248, 0.15);
-            --border-hover: rgba(56, 189, 248, 0.5);
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: var(--bg-main); color: var(--text-main); font-family: 'Outfit', sans-serif; overflow-x: hidden; line-height: 1.6; position: relative; }
-        
-        /* FONDO CREATIVO ESTILO ARCTIC BEAR & LUNA GIGANTE */
-        #arctic-creative-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: radial-gradient(circle at 50% 25%, #101724 0%, #05070b 75%);
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        /* La Luna Ártica Brillante de Fondo */
-        .arctic-moon {
-            position: absolute;
-            top: 12%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 320px;
-            height: 320px;
-            background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, rgba(56,189,248,0.05) 50%, transparent 80%);
-            border: 2px solid rgba(255, 255, 255, 0.25);
-            border-radius: 50%;
-            box-shadow: 0 0 80px rgba(56, 189, 248, 0.15), inset 0 0 30px rgba(255,255,255,0.1);
-            z-index: 0;
-            animation: moonPulse 5s infinite ease-in-out alternate;
-        }
-
-        @keyframes moonPulse {
-            0% { transform: translateX(-50%) scale(1); box-shadow: 0 0 70px rgba(56, 189, 248, 0.15); }
-            100% { transform: translateX(-50%) scale(1.04); box-shadow: 0 0 110px rgba(56, 189, 248, 0.3); }
-        }
-
-        /* Silueta o ilustración del Oso Polar caminando */
-        .arctic-bear-hero {
-            font-size: clamp(6rem, 15vw, 10rem);
-            margin-bottom: 10px;
-            filter: drop-shadow(0 0 30px rgba(255,255,255,0.3));
-            animation: bearFloat 4s ease-in-out infinite alternate;
-        }
-
-        @keyframes bearFloat {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-8px); }
-        }
-
-        header, section, .cta-banner, footer { position: relative; z-index: 10; }
-
-        header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(5, 7, 11, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 16px 5%; }
-        .logo-container { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-main); font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.2rem; }
-        .logo-icon { color: var(--polar-blue); }
-        .nav-links { display: flex; align-items: center; gap: 32px; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
-        .nav-links a:hover { color: var(--polar-blue); }
-        
-        .btn-primary { background: linear-gradient(135deg, #38bdf8, #0284c7); color: #05070b; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.9rem; box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(56, 189, 248, 0.5); }
-        
-        .btn-secondary { background: transparent; color: var(--text-main); padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--border-hover); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; }
-        .btn-secondary:hover { background: rgba(56, 189, 248, 0.08); border-color: var(--polar-blue); color: var(--polar-blue); }
-        
-        .menu-toggle { display: none; background: none; border: none; color: var(--text-main); cursor: pointer; }
-        
-        .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 140px 20px 80px 20px; }
-        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(56, 189, 248, 0.1); border: 1px solid var(--border-hover); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; color: var(--polar-blue); font-weight: 600; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; }
-        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; letter-spacing: -1px; margin-bottom: 20px; line-height: 1.1; color: var(--text-main); }
-        .hero h1 span { color: var(--polar-blue); }
-        .hero p { color: var(--text-muted); font-size: clamp(1rem, 2vw, 1.25rem); max-width: 600px; margin-bottom: 40px; }
-        .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
-        
-        section { padding: 90px 8%; position: relative; }
-        .section-header { text-align: center; max-width: 700px; margin: 0 auto 50px auto; }
-        .section-header h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; color: var(--text-main); }
-        .section-header p { color: var(--text-muted); font-size: 1.05rem; }
-        
-        .modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-        .module-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; padding: 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: all 0.3s ease; }
-        .module-card:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: 0 15px 35px rgba(56, 189, 248, 0.12); }
-        .module-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 14px; }
-        .module-icon { color: var(--polar-blue); }
-        .module-title { font-size: 1.2rem; font-weight: 700; font-family: 'Space Grotesk', sans-serif; color: var(--text-main); }
-        .command-list { list-style: none; display: flex; flex-direction: column; gap: 10px; max-height: 400px; overflow-y: auto; padding-right: 4px; }
-        .command-list::-webkit-scrollbar { width: 4px; }
-        .command-list::-webkit-scrollbar-thumb { background: rgba(56,189,248,0.3); border-radius: 4px; }
-        
-        .command-item { font-size: 0.88rem; color: var(--text-muted); line-height: 1.35; background: rgba(255,255,255,0.02); padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.03); }
-        .cmd-code { color: var(--polar-blue); font-family: monospace; font-weight: 700; font-size: 0.9rem; display: inline-block; margin-bottom: 2px; }
-
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 24px; padding: 45px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .about-content h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; margin-bottom: 20px; color: var(--text-main); }
-        .about-content p { color: var(--text-muted); margin-bottom: 15px; }
-        .about-visual { display: flex; justify-content: center; align-items: center; font-size: 7rem; filter: drop-shadow(0 0 20px rgba(56,189,248,0.3)); }
-
-        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .step-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 35px 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .step-number { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 700; color: rgba(56, 189, 248, 0.2); margin-bottom: 16px; }
-        .step-card h3 { font-size: 1.2rem; margin-bottom: 10px; font-weight: 600; color: var(--text-main); }
-        .step-card p { color: var(--text-muted); font-size: 0.95rem; }
-
-        .faq-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
-        .faq-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-        .faq-question { width: 100%; padding: 18px 22px; background: none; border: none; color: var(--text-main); text-align: left; font-size: 1.02rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-        .faq-answer { padding: 0 22px 18px 22px; color: var(--text-muted); font-size: 0.92rem; display: none; }
-        .faq-item.active .faq-answer { display: block; }
-        .faq-item.active .faq-icon { transform: rotate(180deg); }
-        .faq-icon { transition: transform 0.3s ease; color: var(--polar-blue); }
-
-        .cta-banner { background: linear-gradient(135deg, #0d1118, #05070b); border: 1px solid var(--border-hover); border-radius: 24px; text-align: center; padding: 70px 20px; margin: 0 8% 80px 8%; position: relative; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
-        .cta-banner h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 14px; color: var(--text-main); }
-        .cta-banner p { color: var(--text-muted); font-size: 1.05rem; max-width: 600px; margin: 0 auto 28px auto; }
-
-        footer { border-top: 1px solid var(--border-color); background: #030406; padding: 50px 8% 25px 8%; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 35px; }
-        .footer-col h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; margin-bottom: 18px; color: var(--text-main); }
-        .footer-col p { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 15px; max-width: 300px; }
-        .footer-links { display: flex; flex-direction: column; gap: 10px; }
-        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
-        .footer-links a:hover { color: var(--polar-blue); }
-        .footer-bottom { border-top: 1px solid var(--border-color); padding-top: 25px; text-align: center; color: var(--text-muted); font-size: 0.82rem; }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: #05070b; flex-direction: column; padding: 24px; border-bottom: 1px solid var(--border-color); text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.6); }
-            .nav-links.active { display: flex; }
-            .menu-toggle { display: block; }
-            .about-grid { grid-template-columns: 1fr; padding: 30px; }
-            .footer-grid { grid-template-columns: 1fr; gap: 25px; }
-            section { padding: 60px 5%; }
-        }
-    </style>
-</head>
-
 <body>
     <div id="arctic-creative-bg">
         <div class="arctic-moon"></div>
@@ -182,7 +24,7 @@
     </header>
 
     <section id="inicio" class="hero">
-        <div class="arctic-bear-hero">🐻‍❄️</div>
+        <div class="arctic-bear-walking">🐻‍❄️</div>
         <div class="hero-badge">
             <i data-lucide="snowflake" size="14"></i> Inteligencia y Seguridad Ártica
         </div>
@@ -204,7 +46,7 @@
                 <span style="color: var(--polar-blue); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Nueva Generación</span>
                 <h3 style="margin-top: 10px;">Seguridad robusta y eficiencia inquebrantable</h3>
                 <p>WhiteBear llega para renovar por completo la experiencia de administración y moderación en tus servidores de Discord, manteniendo un diseño oscuro ártico impecable que cuida tu vista.</p>
-                <p>Equipado con un completo sistema disciplinario, gestión de canales, roles, control de voz y automoderación inteligente.</p>
+                <p>Equipado con un completo sistema disciplinario, gestión de canales, roles, control de voz y escudos automáticos de seguridad.</p>
             </div>
             <div class="about-visual">
                 🐻‍❄️
@@ -212,7 +54,7 @@
         </div>
     </section>
 
-    <!-- PANEL DE COMANDOS REALES -->
+    <!-- PANEL DE COMANDOS NUEVOS Y LIMPIOS -->
     <section id="modulos">
         <div class="section-header">
             <h2>Panel de Comandos</h2>
@@ -234,8 +76,8 @@
                     <li class="command-item"><span class="cmd-code">/kick</span><br>Expulsar a un usuario del servidor.</li>
                     <li class="command-item"><span class="cmd-code">/ban</span><br>Bloquear a un usuario del servidor.</li>
                     <li class="command-item"><span class="cmd-code">/unban</span><br>Retirar el bloqueo de un usuario.</li>
-                    <li class="command-item"><span class="cmd-code">/softban</span><br>Expulsar y eliminar mensajes recientes según configuración.</li>
-                    <li class="command-item"><span class="cmd-code">/timeout</span><br>Restringir temporalmente la capacidad de interactuar.</li>
+                    <li class="command-item"><span class="cmd-code">/softban</span><br>Expulsar y eliminar mensajes recientes del usuario.</li>
+                    <li class="command-item"><span class="cmd-code">/timeout</span><br>Restringir temporalmente la interacción.</li>
                     <li class="command-item"><span class="cmd-code">/untimeout</span><br>Retirar el timeout de un usuario.</li>
                 </ul>
             </div>
@@ -248,7 +90,7 @@
                 </div>
                 <ul class="command-list">
                     <li class="command-item"><span class="cmd-code">/purge</span><br>Eliminar una cantidad determinada de mensajes.</li>
-                    <li class="command-item"><span class="cmd-code">/slowmode</span><br>Configurar el intervalo entre mensajes de un canal.</li>
+                    <li class="command-item"><span class="cmd-code">/slowmode</span><br>Configurar intervalo entre mensajes de un canal.</li>
                     <li class="command-item"><span class="cmd-code">/lock</span><br>Bloquear un canal para los miembros.</li>
                     <li class="command-item"><span class="cmd-code">/unlock</span><br>Desbloquear un canal.</li>
                     <li class="command-item"><span class="cmd-code">/hide</span><br>Ocultar un canal a un rol o grupo de usuarios.</li>
@@ -257,31 +99,27 @@
                     <li class="command-item"><span class="cmd-code">/role add</span><br>Asignar un rol a un usuario.</li>
                     <li class="command-item"><span class="cmd-code">/role remove</span><br>Retirar un rol a un usuario.</li>
                     <li class="command-item"><span class="cmd-code">/massrole</span><br>Asignar o retirar rol a varios usuarios autorizados.</li>
-                    <li class="command-item"><span class="cmd-code">/deafen</span><br>Silenciar el audio de un usuario en voz.</li>
-                    <li class="command-item"><span class="cmd-code">/undeafen</span><br>Retirar el silenciamiento de audio.</li>
+                    <li class="command-item"><span class="cmd-code">/deafen</span><br>Silenciar audio de un usuario en canal de voz.</li>
+                    <li class="command-item"><span class="cmd-code">/undeafen</span><br>Retirar silenciamiento de audio.</li>
                     <li class="command-item"><span class="cmd-code">/move</span><br>Mover un usuario a otro canal de voz.</li>
                     <li class="command-item"><span class="cmd-code">/disconnect</span><br>Desconectar a un usuario de un canal de voz.</li>
                 </ul>
             </div>
 
-            <!-- CATEGORÍA 3: AUTOMODERACIÓN -->
+            <!-- CATEGORÍA 3: ESCUDOS Y SEGURIDAD (NUEVOS COMANDOS) -->
             <div class="module-card">
                 <div class="module-header">
                     <i data-lucide="shield-alert" class="module-icon" size="24"></i>
-                    <div class="module-title">Sistema de Automod</div>
+                    <div class="module-title">Escudos y Seguridad</div>
                 </div>
                 <ul class="command-list">
-                    <li class="command-item"><span class="cmd-code">/automod</span><br>Configurar el sistema de automoderación.</li>
-                    <li class="command-item"><span class="cmd-code">/automod enable</span><br>Activar la automoderación.</li>
-                    <li class="command-item"><span class="cmd-code">/automod disable</span><br>Desactivarla.</li>
-                    <li class="command-item"><span class="cmd-code">/automod words</span><br>Gestionar palabras prohibidas.</li>
-                    <li class="command-item"><span class="cmd-code">/automod links</span><br>Configurar la detección de enlaces.</li>
-                    <li class="command-item"><span class="cmd-code">/automod spam</span><br>Configurar la detección de spam.</li>
-                    <li class="command-item"><span class="cmd-code">/automod mentions</span><br>Configurar límites de menciones.</li>
-                    <li class="command-item"><span class="cmd-code">/automod caps</span><br>Configurar límites de mayúsculas.</li>
-                    <li class="command-item"><span class="cmd-code">/automod invites</span><br>Gestionar invitaciones de Discord.</li>
-                    <li class="command-item"><span class="cmd-code">/automod exemptions</span><br>Configurar excepciones por usuario, rol o canal.</li>
-                    <li class="command-item"><span class="cmd-code">/automod logs</span><br>Configurar dónde se registran las detecciones.</li>
+                    <li class="command-item"><span class="cmd-code">/antilink</span><br>Configurar la protección contra enlaces.</li>
+                    <li class="command-item"><span class="cmd-code">/antispam</span><br>Configurar la protección contra spam.</li>
+                    <li class="command-item"><span class="cmd-code">/antiinvite</span><br>Configurar la protección contra invitaciones.</li>
+                    <li class="command-item"><span class="cmd-code">/antieveryone</span><br>Detectar o restringir menciones masivas.</li>
+                    <li class="command-item"><span class="cmd-code">/antimention</span><br>Limitar las menciones excesivas.</li>
+                    <li class="command-item"><span class="cmd-code">/honeypot</span><br>Configurar canal o mecanismo de detección mediante señuelos.</li>
+                    <li class="command-item"><span class="cmd-code">/whitelist</span><br>Gestionar usuarios, roles y canales exentos de reglas.</li>
                 </ul>
             </div>
 
@@ -301,8 +139,8 @@
             </div>
             <div class="step-card">
                 <div class="step-number">02</div>
-                <h3>Configura las herramientas</h3>
-                <p>Utiliza los comandos de barra para ajustar la automoderación y permisos de moderadores.</p>
+                <h3>Configura los escudos</h3>
+                <p>Utiliza los comandos de barra para activar las protecciones contra spam, enlaces e invitaciones.</p>
             </div>
             <div class="step-card">
                 <div class="step-number">03</div>
@@ -329,11 +167,11 @@
             </div>
             <div class="faq-item">
                 <button class="faq-question">
-                    ¿Cómo configuro la automoderación?
+                    ¿Cómo funcionan las protecciones anti-spam y anti-link?
                     <i data-lucide="chevron-down" class="faq-icon" size="20"></i>
                 </button>
                 <div class="faq-answer">
-                    Puedes activar y ajustar todos los parámetros de seguridad usando los comandos `/automod` directamente en tu servidor.
+                    Puedes configurarlas de forma sencilla usando comandos como `/antispam` y `/antilink` para mantener tu comunidad libre de abusos.
                 </div>
             </div>
             <div class="faq-item">
