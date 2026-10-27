@@ -5,377 +5,162 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WhiteBear — The Arctic Intelligence.</title>
     <meta property="og:title" content="WhiteBear — The Arctic Intelligence.">
-    <meta property="og:description" content="Tu bot inteligente para Discord con estética polar y máxima eficiencia.">
+    <meta property="og:description" content="Tu bot inteligente para Discord con estética oscura ártica y máxima eficiencia.">
     <meta property="og:type" content="website">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --bg-main: #f4f6f9;
-            --bg-card: #ffffff;
-            --bg-card-hover: #eef2f7;
-            --polar-blue: #0070f3;
-            --polar-dark: #111827;
-            --text-main: #1f2937;
-            --text-muted: #6b7280;
-            --border-color: rgba(0, 112, 243, 0.15);
-            --border-hover: rgba(0, 112, 243, 0.4);
+            --bg-main: #05070b;
+            --bg-card: #0d1118;
+            --bg-card-hover: #131923;
+            --polar-blue: #38bdf8;
+            --polar-glow: rgba(56, 189, 248, 0.25);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: rgba(56, 189, 248, 0.15);
+            --border-hover: rgba(56, 189, 248, 0.5);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: var(--bg-main); color: var(--text-main); font-family: 'Outfit', sans-serif; overflow-x: hidden; line-height: 1.6; position: relative; }
         
-        #giant-bear-bg {
+        /* FONDO CREATIVO ESTILO ARCTIC BEAR & LUNA GIGANTE */
+        #arctic-creative-bg {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: clamp(15rem, 50vw, 38rem);
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at 50% 25%, #101724 0%, #05070b 75%);
             pointer-events: none;
             z-index: 0;
-            user-select: none;
-            opacity: 0.08;
-            filter: drop-shadow(0 0 40px #0070f3) blur(1px);
-            animation: floatBear 5s infinite ease-in-out alternate;
+            overflow: hidden;
         }
 
-        @keyframes floatBear {
-            0% { transform: translate(-50%, -48%) scale(1) rotate(-1deg); }
-            50% { transform: translate(-50%, -52%) scale(1.05) rotate(1deg); }
-            100% { transform: translate(-50%, -49%) scale(0.98) rotate(-1deg); }
+        /* La Luna Ártica Brillante de Fondo */
+        .arctic-moon {
+            position: absolute;
+            top: 12%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, rgba(56,189,248,0.05) 50%, transparent 80%);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50%;
+            box-shadow: 0 0 80px rgba(56, 189, 248, 0.15), inset 0 0 30px rgba(255,255,255,0.1);
+            z-index: 0;
+            animation: moonPulse 5s infinite ease-in-out alternate;
+        }
+
+        @keyframes moonPulse {
+            0% { transform: translateX(-50%) scale(1); box-shadow: 0 0 70px rgba(56, 189, 248, 0.15); }
+            100% { transform: translateX(-50%) scale(1.04); box-shadow: 0 0 110px rgba(56, 189, 248, 0.3); }
+        }
+
+        /* Silueta o ilustración del Oso Polar caminando */
+        .arctic-bear-hero {
+            font-size: clamp(6rem, 15vw, 10rem);
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 30px rgba(255,255,255,0.3));
+            animation: bearFloat 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes bearFloat {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-8px); }
         }
 
         header, section, .cta-banner, footer { position: relative; z-index: 10; }
 
-        header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(244, 246, 249, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 16px 5%; }
-        .logo-container { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--polar-dark); font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.2rem; }
+        header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(5, 7, 11, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 16px 5%; }
+        .logo-container { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-main); font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.2rem; }
         .logo-icon { color: var(--polar-blue); }
         .nav-links { display: flex; align-items: center; gap: 32px; }
         .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
         .nav-links a:hover { color: var(--polar-blue); }
         
-        .btn-primary { background: linear-gradient(135deg, #0070f3, #0051b3); color: #ffffff; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 20px rgba(0, 112, 243, 0.25); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(0, 112, 243, 0.4); }
+        .btn-primary { background: linear-gradient(135deg, #38bdf8, #0284c7); color: #05070b; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.9rem; box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(56, 189, 248, 0.5); }
         
-        .btn-secondary { background: transparent; color: var(--polar-dark); padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--polar-dark); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; }
-        .btn-secondary:hover { background: rgba(17, 24, 39, 0.05); border-color: var(--polar-blue); color: var(--polar-blue); }
+        .btn-secondary { background: transparent; color: var(--text-main); padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--border-hover); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-secondary:hover { background: rgba(56, 189, 248, 0.08); border-color: var(--polar-blue); color: var(--polar-blue); }
         
-        .menu-toggle { display: none; background: none; border: none; color: var(--polar-dark); cursor: pointer; }
+        .menu-toggle { display: none; background: none; border: none; color: var(--text-main); cursor: pointer; }
         
-        .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 140px 20px 80px 20px; background: radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, rgba(244,246,249,0.95) 70%); }
-        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0, 112, 243, 0.08); border: 1px solid var(--border-hover); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; color: var(--polar-blue); font-weight: 600; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; }
-        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; letter-spacing: -1px; margin-bottom: 20px; line-height: 1.1; color: var(--polar-dark); }
+        .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 140px 20px 80px 20px; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(56, 189, 248, 0.1); border: 1px solid var(--border-hover); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; color: var(--polar-blue); font-weight: 600; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; }
+        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; letter-spacing: -1px; margin-bottom: 20px; line-height: 1.1; color: var(--text-main); }
         .hero h1 span { color: var(--polar-blue); }
         .hero p { color: var(--text-muted); font-size: clamp(1rem, 2vw, 1.25rem); max-width: 600px; margin-bottom: 40px; }
         .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
         
-        section { padding: 100px 8%; position: relative; }
-        .section-header { text-align: center; max-width: 700px; margin: 0 auto 60px auto; }
-        .section-header h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; color: var(--polar-dark); }
+        section { padding: 90px 8%; position: relative; }
+        .section-header { text-align: center; max-width: 700px; margin: 0 auto 50px auto; }
+        .section-header h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; color: var(--text-main); }
         .section-header p { color: var(--text-muted); font-size: 1.05rem; }
         
-        .modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .module-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; padding: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: all 0.3s ease; }
-        .module-card:hover { border-color: var(--border-hover); transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0, 112, 243, 0.08); }
-        .module-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 16px; }
+        .modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        .module-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; padding: 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: all 0.3s ease; }
+        .module-card:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: 0 15px 35px rgba(56, 189, 248, 0.12); }
+        .module-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 14px; }
         .module-icon { color: var(--polar-blue); }
-        .module-title { font-size: 1.3rem; font-weight: 700; font-family: 'Space Grotesk', sans-serif; color: var(--polar-dark); }
-        .command-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-        .command-item { font-size: 0.92rem; color: var(--text-muted); line-height: 1.4; display: flex; justify-content: space-between; align-items: center; }
-        .cmd-code { background: rgba(0, 112, 243, 0.08); color: var(--polar-blue); padding: 2px 8px; border-radius: 6px; font-family: monospace; font-weight: 600; font-size: 0.85rem; }
-        .badge-soon { background: #e5e7eb; color: #374151; font-size: 0.75rem; padding: 2px 8px; border-radius: 12px; font-weight: 600; text-transform: uppercase; }
+        .module-title { font-size: 1.2rem; font-weight: 700; font-family: 'Space Grotesk', sans-serif; color: var(--text-main); }
+        .command-list { list-style: none; display: flex; flex-direction: column; gap: 10px; max-height: 400px; overflow-y: auto; padding-right: 4px; }
+        .command-list::-webkit-scrollbar { width: 4px; }
+        .command-list::-webkit-scrollbar-thumb { background: rgba(56,189,248,0.3); border-radius: 4px; }
+        
+        .command-item { font-size: 0.88rem; color: var(--text-muted); line-height: 1.35; background: rgba(255,255,255,0.02); padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.03); }
+        .cmd-code { color: var(--polar-blue); font-family: monospace; font-weight: 700; font-size: 0.9rem; display: inline-block; margin-bottom: 2px; }
 
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 24px; padding: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
-        .about-content h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; margin-bottom: 20px; color: var(--polar-dark); }
-        .about-content p { color: var(--text-muted); margin-bottom: 20px; }
-        .about-visual { display: flex; justify-content: center; align-items: center; font-size: 8rem; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 24px; padding: 45px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .about-content h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; margin-bottom: 20px; color: var(--text-main); }
+        .about-content p { color: var(--text-muted); margin-bottom: 15px; }
+        .about-visual { display: flex; justify-content: center; align-items: center; font-size: 7rem; filter: drop-shadow(0 0 20px rgba(56,189,248,0.3)); }
 
-        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .step-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 40px 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
-        .step-number { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 700; color: rgba(0, 112, 243, 0.2); margin-bottom: 16px; }
-        .step-card h3 { font-size: 1.2rem; margin-bottom: 12px; font-weight: 600; color: var(--polar-dark); }
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .step-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 35px 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .step-number { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 700; color: rgba(56, 189, 248, 0.2); margin-bottom: 16px; }
+        .step-card h3 { font-size: 1.2rem; margin-bottom: 10px; font-weight: 600; color: var(--text-main); }
         .step-card p { color: var(--text-muted); font-size: 0.95rem; }
 
-        .faq-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
-        .faq-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
-        .faq-question { width: 100%; padding: 20px 24px; background: none; border: none; color: var(--polar-dark); text-align: left; font-size: 1.05rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-        .faq-answer { padding: 0 24px 20px 24px; color: var(--text-muted); font-size: 0.95rem; display: none; }
+        .faq-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .faq-question { width: 100%; padding: 18px 22px; background: none; border: none; color: var(--text-main); text-align: left; font-size: 1.02rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-answer { padding: 0 22px 18px 22px; color: var(--text-muted); font-size: 0.92rem; display: none; }
         .faq-item.active .faq-answer { display: block; }
         .faq-item.active .faq-icon { transform: rotate(180deg); }
         .faq-icon { transition: transform 0.3s ease; color: var(--polar-blue); }
 
-        .cta-banner { background: linear-gradient(135deg, #111827, #1f2937); color: #ffffff; border-radius: 24px; text-align: center; padding: 80px 20px; margin: 0 8% 80px 8%; position: relative; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .cta-banner h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 16px; }
-        .cta-banner p { color: #9ca3af; font-size: 1.1rem; max-width: 600px; margin: 0 auto 32px auto; }
+        .cta-banner { background: linear-gradient(135deg, #0d1118, #05070b); border: 1px solid var(--border-hover); border-radius: 24px; text-align: center; padding: 70px 20px; margin: 0 8% 80px 8%; position: relative; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
+        .cta-banner h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 14px; color: var(--text-main); }
+        .cta-banner p { color: var(--text-muted); font-size: 1.05rem; max-width: 600px; margin: 0 auto 28px auto; }
 
-        footer { border-top: 1px solid var(--border-color); background: #ffffff; padding: 60px 8% 30px 8%; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-        .footer-col h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; margin-bottom: 20px; color: var(--polar-dark); }
-        .footer-col p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; max-width: 300px; }
-        .footer-links { display: flex; flex-direction: column; gap: 12px; }
-        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+        footer { border-top: 1px solid var(--border-color); background: #030406; padding: 50px 8% 25px 8%; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 35px; }
+        .footer-col h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; margin-bottom: 18px; color: var(--text-main); }
+        .footer-col p { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 15px; max-width: 300px; }
+        .footer-links { display: flex; flex-direction: column; gap: 10px; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
         .footer-links a:hover { color: var(--polar-blue); }
-        .footer-bottom { border-top: 1px solid var(--border-color); padding-top: 30px; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
+        .footer-bottom { border-top: 1px solid var(--border-color); padding-top: 25px; text-align: center; color: var(--text-muted); font-size: 0.82rem; }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: #ffffff; flex-direction: column; padding: 24px; border-bottom: 1px solid var(--border-color); text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: #05070b; flex-direction: column; padding: 24px; border-bottom: 1px solid var(--border-color); text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.6); }
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
             .about-grid { grid-template-columns: 1fr; padding: 30px; }
-            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
-            section { padding: 70px 5%; }
+            .footer-grid { grid-template-columns: 1fr; gap: 25px; }
+            section { padding: 60px 5%; }
         }
     </style>
 </head>
 
 <body>
-    <div id="giant-bear-bg">🐻‍❄️</div>
-
-    <header>
-        <a href="#inicio" class="logo-container">
-            <i data-lucide="shield" class="logo-icon"></i>
-            <span>WhiteBear</span>
-        </a>
-        <nav class="nav-links" id="navLinks">
-            <a href="#inicio">Inicio</a>
-            <a href="#que-es">¿Qué es?</a>
-            <a href="#modulos">Comandos</a>
-            <a href="#como-funciona">Cómo funciona</a>
-            <a href="#faq">FAQ</a>
-            <a href="https://discord.com/api/oauth2/authorize?client_id=1545846469175812197&permissions=274878024704&scope=bot%20applications.commands" target="_blank" class="btn-primary">
-                Invitar al bot <i data-lucide="external-link" size="16"></i>
-            </a>
-        </nav>
-        <button class="menu-toggle" id="menuToggle">
-            <i data-lucide="menu" size="24"></i>
-        </button>
-    </header>
-
-    <section id="inicio" class="hero">
-        <div class="hero-badge">
-            <i data-lucide="snowflake" size="14"></i> Inteligencia y Seguridad Ártica
-        </div>
-        <h1>THE ARCTIC <span>INTELLIGENCE.</span></h1>
-        <p>Conoce WhiteBear, tu nuevo bot de confianza en Discord con máxima protección y rendimiento optimizado.</p>
-        <div class="hero-buttons">
-            <a href="https://discord.com/api/oauth2/authorize?client_id=1545846469175812197&permissions=274878024704&scope=bot%20applications.commands" target="_blank" class="btn-primary">
-                Descubrir WhiteBear <i data-lucide="arrow-right" size="16"></i>
-            </a>
-            <a href="https://discord.gg/xSS53bQ6cY" target="_blank" class="btn-secondary">
-                Únete a nuestra comunidad <i data-lucide="message-square" size="16"></i>
-            </a>
-        </div>
-    </section>
-
-    <section id="que-es">
-        <div class="about-grid">
-            <div class="about-content">
-                <span style="color: var(--polar-blue); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Nueva Generación</span>
-                <h3 style="margin-top: 10px;">Seguridad robusta y eficiencia inquebrantable</h3>
-                <p>WhiteBear llega para renovar por completo la experiencia de administración y moderación en tus servidores de Discord, con una interfaz limpia y herramientas de alta categoría.</p>
-                <p>Diseñado bajo una arquitectura ligera para responder de forma inmediata a cualquier necesidad de tu comunidad.</p>
-            </div>
-            <div class="about-visual">
-                🐻‍❄️
-            </div>
-        </div>
-    </section>
-
-    <section id="modulos">
-        <div class="section-header">
-            <h2>Panel de Comandos</h2>
-            <p>Directorio de utilidades y sistemas próximamente disponibles.</p>
-        </div>
-        <div class="modules-grid">
-            
-            <div class="module-card">
-                <div class="module-header">
-                    <i data-lucide="shield-alert" class="module-icon" size="24"></i>
-                    <div class="module-title">AutoModeración</div>
-                </div>
-                <ul class="command-list">
-                    <li class="command-item"><span class="cmd-code">Filtro Anti-Invite</span> <span class="badge-soon">Próximamente</span></li>
-                    <li class="command-item"><span class="cmd-code">Filtro Anti-Links</span> <span class="badge-soon">Próximamente</span></li>
-                    <li class="command-item"><span class="cmd-code">Filtro Anti-Spam</span> <span class="badge-soon">Próximamente</span></li>
-                    <li class="command-item"><span class="cmd-code">Filtro Menciones</span> <span class="badge-soon">Próximamente</span></li>
-                    <li class="command-item"><span class="cmd-code">Filtro Palabras</span> <span class="badge-soon">Próximamente</span></li>
-                    <li class="command-item"><span class="cmd-code">/white</span> <span class="badge-soon">Próximamente</span></li>
-                    <li class="command-item"><span class="cmd-code">/crear_automod</span> <span class="badge-soon">Próximamente</span></li>
-                </ul>
-            </div>
-
-            <div class="module-card">
-                <div class="module-header">
-                    <i data-lucide="gavel" class="module-icon" size="24"></i>
-                    <div class="module-title">Control Disciplinario</div>
-                </div>
-                <ul class="command-list">
-                    <li class="command-item"><span class="cmd-code">/warn</span> <span class="badge-soon">Próximamente</span></li>
-                    <li class="command-item"><span class="cmd-code">/modhistory</span> <span class="badge-soon">Próximamente</span></li>
-                    <li class="command-item"><span class="cmd-code">/clearwarns</span> <span class="badge-soon">Próximamente</span></li>
-                    <li class="command-item"><span class="cmd-code">/timeout</span> <span class="badge-soon">Próximamente</span></li>
-                    <li class="command-item"><span class="cmd-code">/kick</span> <span class="badge-soon">Próximamente</span></li>
-                    <li class="command-item"><span class="cmd-code">/ban /unban</span> <span class="badge-soon">Próximamente</span></li>
-                    <li class="command-item"><span class="cmd-code">/softban</span> <span class="badge-soon">Próximamente</span></li>
-                </ul>
-            </div>
-
-            <div class="module-card">
-                <div class="module-header">
-                    <i data-lucide="sliders" class="module-icon" size="24"></i>
-                    <div class="module-title">Canales y Configuración</div>
-                </div>
-                <ul class="command-list">
-                    <li class="command-item"><span class="cmd-code">/purge</span> <span class="badge-soon">Próximamente</span></li>
-                    <li class="command-item"><span class="cmd-code">/slowmode</span> <span class="badge-soon">Próximamente</span></li>
-                    <li class="command-item"><span class="cmd-code">/lock /unlock</span> <span class="badge-soon">Próximamente</span></li>
-                    <li class="command-item"><span class="cmd-code">/logs</span> <span class="badge-soon">Próximamente</span></li>
-                    <li class="command-item"><span class="cmd-code">/setcanal</span> <span class="badge-soon">Próximamente</span></li>
-                    <li class="command-item"><span class="cmd-code">/idioma</span> <span class="badge-soon">Próximamente</span></li>
-                    <li class="command-item"><span class="cmd-code">/servers</span> <span class="badge-soon">Próximamente</span></li>
-                </ul>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="como-funciona">
-        <div class="section-header">
-            <h2>¿Cómo Funciona?</h2>
-            <p>Comienza a utilizar WhiteBear en tu servidor en tres sencillos pasos.</p>
-        </div>
-        <div class="steps-grid">
-            <div class="step-card">
-                <div class="step-number">01</div>
-                <h3>Invita a WhiteBear</h3>
-                <p>Añade el bot a tu servidor de Discord utilizando nuestro enlace oficial autorizado.</p>
-            </div>
-            <div class="step-card">
-                <div class="step-number">02</div>
-                <h3>Explora las funciones</h3>
-                <p>Mantente atento a las próximas actualizaciones y despliegues de comandos.</p>
-            </div>
-            <div class="step-card">
-                <div class="step-number">03</div>
-                <h3>Disfruta del rendimiento</h3>
-                <p>Experimenta una gestión fluida y moderna en toda tu comunidad.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="faq">
-        <div class="section-header">
-            <h2>Preguntas Frecuentes</h2>
-            <p>Resuelve tus dudas sobre WhiteBear.</p>
-        </div>
-        <div class="faq-container">
-            <div class="faq-item">
-                <button class="faq-question">
-                    ¿Qué es WhiteBear?
-                    <i data-lucide="chevron-down" class="faq-icon" size="20"></i>
-                </button>
-                <div class="faq-answer">
-                    WhiteBear es la evolución en bots de Discord enfocados en moderación, herramientas administrativas y alta velocidad de respuesta.
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">
-                    ¿Cuándo estarán disponibles los comandos?
-                    <i data-lucide="chevron-down" class="faq-icon" size="20"></i>
-                </button>
-                <div class="faq-answer">
-                    Los módulos se habilitarán próximamente de forma progresiva. Puedes unirte al servidor de soporte para conocer las fechas de lanzamiento.
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">
-                    ¿WhiteBear es gratuito?
-                    <i data-lucide="chevron-down" class="faq-icon" size="20"></i>
-                </button>
-                <div class="faq-answer">
-                    Sí, puedes invitar y utilizar las funciones base del bot de manera completamente accesible en tu servidor.
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">
-                    ¿Dónde puedo recibir soporte?
-                    <i data-lucide="chevron-down" class="faq-icon" size="20"></i>
-                </button>
-                <div class="faq-answer">
-                    Puedes unirte a nuestro servidor oficial de soporte en Discord mediante el enlace disponible en la web para resolver cualquier consulta.
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="cta-banner">
-        <h2>¿LISTO PARA PROBAR WHITEBEAR?</h2>
-        <p>Lleva una nueva experiencia y seguridad ártica a tu comunidad de Discord.</p>
-        <div class="hero-buttons">
-            <a href="https://discord.com/api/oauth2/authorize?client_id=1545846469175812197&permissions=274878024704&scope=bot%20applications.commands" target="_blank" class="btn-primary">
-                Invitar a WhiteBear <i data-lucide="external-link" size="16"></i>
-            </a>
-            <a href="https://discord.gg/xSS53bQ6cY" target="_blank" class="btn-secondary" style="color: #fff; border-color: #fff;">
-                Unirse al servidor de soporte <i data-lucide="message-square" size="16"></i>
-            </a>
-        </div>
+    <div id="arctic-creative-bg">
+        <div class="arctic-moon"></div>
     </div>
 
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <div class="logo-container" style="margin-bottom: 15px;">
-                    <i data-lucide="shield" class="logo-icon"></i>
-                    <span>WhiteBear</span>
-                </div>
-                <p>Tu sistema inteligente de moderación y herramientas avanzadas para Discord.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Navegación</h4>
-                <div class="footer-links">
-                    <a href="#inicio">Inicio</a>
-                    <a href="#que-es">¿Qué es?</a>
-                    <a href="#modulos">Comandos</a>
-                    <a href="#faq">Preguntas frecuentes</a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4>Comunidad</h4>
-                <div class="footer-links">
-                    <a href="https://discord.com/api/oauth2/authorize?client_id=1545846469175812197&permissions=274878024704&scope=bot%20applications.commands" target="_blank">Invitar al bot</a>
-                    <a href="https://discord.gg/xSS53bQ6cY" target="_blank">Servidor de soporte</a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2026 WhiteBear. Todos los derechos reservados. The Arctic Intelligence.</p>
-        </div>
-    </footer>
-
-    <script>
-        lucide.createIcons();
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            const questionBtn = item.querySelector('.faq-question');
-            questionBtn.addEventListener('click', () => {
-                faqItems.forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.classList.remove('active');
-                    }
-                });
-                item.classList.toggle('active');
-            });
-        });
-    </script>
-</body>
-</html>
-<body>
-    <div id="arctic-bg"></div>
-
     <header>
         <a href="#inicio" class="logo-container">
             <i data-lucide="shield" class="logo-icon"></i>
@@ -397,6 +182,7 @@
     </header>
 
     <section id="inicio" class="hero">
+        <div class="arctic-bear-hero">🐻‍❄️</div>
         <div class="hero-badge">
             <i data-lucide="snowflake" size="14"></i> Inteligencia y Seguridad Ártica
         </div>
@@ -417,8 +203,8 @@
             <div class="about-content">
                 <span style="color: var(--polar-blue); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Nueva Generación</span>
                 <h3 style="margin-top: 10px;">Seguridad robusta y eficiencia inquebrantable</h3>
-                <p>WhiteBear llega para renovar por completo la experiencia de administración y moderación en tus servidores de Discord, manteniendo una interfaz oscura impecable que cuida tu vista.</p>
-                <p>Equipado con un completo sistema disciplinario, gestión de canales, roles y automoderación inteligente.</p>
+                <p>WhiteBear llega para renovar por completo la experiencia de administración y moderación en tus servidores de Discord, manteniendo un diseño oscuro ártico impecable que cuida tu vista.</p>
+                <p>Equipado con un completo sistema disciplinario, gestión de canales, roles, control de voz y automoderación inteligente.</p>
             </div>
             <div class="about-visual">
                 🐻‍❄️
@@ -426,7 +212,7 @@
         </div>
     </section>
 
-    <!-- PANEL DE COMANDOS ACTUALIZADOS -->
+    <!-- PANEL DE COMANDOS REALES -->
     <section id="modulos">
         <div class="section-header">
             <h2>Panel de Comandos</h2>
@@ -434,11 +220,11 @@
         </div>
         <div class="modules-grid">
             
-            <!-- CATEGORÍA 1: MODERACIÓN Y SANCIONES -->
+            <!-- CATEGORÍA 1: SANCIONES Y MODERACIÓN -->
             <div class="module-card">
                 <div class="module-header">
                     <i data-lucide="gavel" class="module-icon" size="24"></i>
-                    <div class="module-title">Sanciones y Advertencias</div>
+                    <div class="module-title">Sanciones y Moderación</div>
                 </div>
                 <ul class="command-list">
                     <li class="command-item"><span class="cmd-code">/warn</span><br>Advertir a un usuario.</li>
@@ -448,27 +234,31 @@
                     <li class="command-item"><span class="cmd-code">/kick</span><br>Expulsar a un usuario del servidor.</li>
                     <li class="command-item"><span class="cmd-code">/ban</span><br>Bloquear a un usuario del servidor.</li>
                     <li class="command-item"><span class="cmd-code">/unban</span><br>Retirar el bloqueo de un usuario.</li>
-                    <li class="command-item"><span class="cmd-code">/softban</span><br>Expulsar y eliminar mensajes recientes (24h).</li>
-                    <li class="command-item"><span class="cmd-code">/timeout</span><br>Restringir temporalmente la interacción.</li>
+                    <li class="command-item"><span class="cmd-code">/softban</span><br>Expulsar y eliminar mensajes recientes según configuración.</li>
+                    <li class="command-item"><span class="cmd-code">/timeout</span><br>Restringir temporalmente la capacidad de interactuar.</li>
                     <li class="command-item"><span class="cmd-code">/untimeout</span><br>Retirar el timeout de un usuario.</li>
                 </ul>
             </div>
 
-            <!-- CATEGORÍA 2: CANALES, ROLES Y CHAT -->
+            <!-- CATEGORÍA 2: CANALES, ROLES Y VOZ -->
             <div class="module-card">
                 <div class="module-header">
                     <i data-lucide="sliders" class="module-icon" size="24"></i>
-                    <div class="module-title">Canales, Roles y Utilidades</div>
+                    <div class="module-title">Canales, Roles y Voz</div>
                 </div>
                 <ul class="command-list">
                     <li class="command-item"><span class="cmd-code">/purge</span><br>Eliminar una cantidad determinada de mensajes.</li>
                     <li class="command-item"><span class="cmd-code">/slowmode</span><br>Configurar el intervalo entre mensajes de un canal.</li>
-                    <li class="command-item"><span class="cmd-code">/lock / unlock</span><br>Bloquear o desbloquear un canal de texto.</li>
-                    <li class="command-item"><span class="cmd-code">/hide / unhide</span><br>Ocultar o restaurar la visibilidad de un canal.</li>
+                    <li class="command-item"><span class="cmd-code">/lock</span><br>Bloquear un canal para los miembros.</li>
+                    <li class="command-item"><span class="cmd-code">/unlock</span><br>Desbloquear un canal.</li>
+                    <li class="command-item"><span class="cmd-code">/hide</span><br>Ocultar un canal a un rol o grupo de usuarios.</li>
+                    <li class="command-item"><span class="cmd-code">/unhide</span><br>Restaurar la visibilidad del canal.</li>
                     <li class="command-item"><span class="cmd-code">/nick</span><br>Cambiar el apodo de un usuario.</li>
-                    <li class="command-item"><span class="cmd-code">/role add / remove</span><br>Asignar o retirar un rol a un usuario.</li>
+                    <li class="command-item"><span class="cmd-code">/role add</span><br>Asignar un rol a un usuario.</li>
+                    <li class="command-item"><span class="cmd-code">/role remove</span><br>Retirar un rol a un usuario.</li>
                     <li class="command-item"><span class="cmd-code">/massrole</span><br>Asignar o retirar rol a varios usuarios autorizados.</li>
-                    <li class="command-item"><span class="cmd-code">/deafen / undeafen</span><br>Silenciar audio de un usuario en canal de voz.</li>
+                    <li class="command-item"><span class="cmd-code">/deafen</span><br>Silenciar el audio de un usuario en voz.</li>
+                    <li class="command-item"><span class="cmd-code">/undeafen</span><br>Retirar el silenciamiento de audio.</li>
                     <li class="command-item"><span class="cmd-code">/move</span><br>Mover un usuario a otro canal de voz.</li>
                     <li class="command-item"><span class="cmd-code">/disconnect</span><br>Desconectar a un usuario de un canal de voz.</li>
                 </ul>
@@ -482,14 +272,15 @@
                 </div>
                 <ul class="command-list">
                     <li class="command-item"><span class="cmd-code">/automod</span><br>Configurar el sistema de automoderación.</li>
-                    <li class="command-item"><span class="cmd-code">/automod enable / disable</span><br>Activar o desactivar el automod.</li>
+                    <li class="command-item"><span class="cmd-code">/automod enable</span><br>Activar la automoderación.</li>
+                    <li class="command-item"><span class="cmd-code">/automod disable</span><br>Desactivarla.</li>
                     <li class="command-item"><span class="cmd-code">/automod words</span><br>Gestionar palabras prohibidas.</li>
                     <li class="command-item"><span class="cmd-code">/automod links</span><br>Configurar la detección de enlaces.</li>
                     <li class="command-item"><span class="cmd-code">/automod spam</span><br>Configurar la detección de spam.</li>
                     <li class="command-item"><span class="cmd-code">/automod mentions</span><br>Configurar límites de menciones.</li>
                     <li class="command-item"><span class="cmd-code">/automod caps</span><br>Configurar límites de mayúsculas.</li>
                     <li class="command-item"><span class="cmd-code">/automod invites</span><br>Gestionar invitaciones de Discord.</li>
-                    <li class="command-item"><span class="cmd-code">/automod exemptions</span><br>Configurar excepciones por usuario/rol/canal.</li>
+                    <li class="command-item"><span class="cmd-code">/automod exemptions</span><br>Configurar excepciones por usuario, rol o canal.</li>
                     <li class="command-item"><span class="cmd-code">/automod logs</span><br>Configurar dónde se registran las detecciones.</li>
                 </ul>
             </div>
@@ -516,7 +307,7 @@
             <div class="step-card">
                 <div class="step-number">03</div>
                 <h3>Servidor Protegido</h3>
-                <p>Disfruta de una gestión fluida, segura y con diseño adaptado para tu comodidad.</p>
+                <p>Disfruta de una gestión fluida, segura y con diseño oscuro adaptado para tu comodidad.</p>
             </div>
         </div>
     </section>
