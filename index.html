@@ -373,3 +373,262 @@
     </script>
 </body>
 </html>
+<body>
+    <div id="arctic-bg"></div>
+
+    <header>
+        <a href="#inicio" class="logo-container">
+            <i data-lucide="shield" class="logo-icon"></i>
+            <span>WhiteBear</span>
+        </a>
+        <nav class="nav-links" id="navLinks">
+            <a href="#inicio">Inicio</a>
+            <a href="#que-es">¿Qué es?</a>
+            <a href="#modulos">Comandos</a>
+            <a href="#como-funciona">Cómo funciona</a>
+            <a href="#faq">FAQ</a>
+            <a href="https://discord.com/api/oauth2/authorize?client_id=1545846469175812197&permissions=274878024704&scope=bot%20applications.commands" target="_blank" class="btn-primary">
+                Invitar al bot <i data-lucide="external-link" size="16"></i>
+            </a>
+        </nav>
+        <button class="menu-toggle" id="menuToggle">
+            <i data-lucide="menu" size="24"></i>
+        </button>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-badge">
+            <i data-lucide="snowflake" size="14"></i> Inteligencia y Seguridad Ártica
+        </div>
+        <h1>THE ARCTIC <span>INTELLIGENCE.</span></h1>
+        <p>Conoce WhiteBear, tu nuevo bot de confianza en Discord con máxima protección, moderación avanzada y rendimiento optimizado.</p>
+        <div class="hero-buttons">
+            <a href="https://discord.com/api/oauth2/authorize?client_id=1545846469175812197&permissions=274878024704&scope=bot%20applications.commands" target="_blank" class="btn-primary">
+                Descubrir WhiteBear <i data-lucide="arrow-right" size="16"></i>
+            </a>
+            <a href="https://discord.gg/xSS53bQ6cY" target="_blank" class="btn-secondary">
+                Únete a nuestra comunidad <i data-lucide="message-square" size="16"></i>
+            </a>
+        </div>
+    </section>
+
+    <section id="que-es">
+        <div class="about-grid">
+            <div class="about-content">
+                <span style="color: var(--polar-blue); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Nueva Generación</span>
+                <h3 style="margin-top: 10px;">Seguridad robusta y eficiencia inquebrantable</h3>
+                <p>WhiteBear llega para renovar por completo la experiencia de administración y moderación en tus servidores de Discord, manteniendo una interfaz oscura impecable que cuida tu vista.</p>
+                <p>Equipado con un completo sistema disciplinario, gestión de canales, roles y automoderación inteligente.</p>
+            </div>
+            <div class="about-visual">
+                🐻‍❄️
+            </div>
+        </div>
+    </section>
+
+    <!-- PANEL DE COMANDOS ACTUALIZADOS -->
+    <section id="modulos">
+        <div class="section-header">
+            <h2>Panel de Comandos</h2>
+            <p>Directorio completo de utilidades de moderación y administración.</p>
+        </div>
+        <div class="modules-grid">
+            
+            <!-- CATEGORÍA 1: MODERACIÓN Y SANCIONES -->
+            <div class="module-card">
+                <div class="module-header">
+                    <i data-lucide="gavel" class="module-icon" size="24"></i>
+                    <div class="module-title">Sanciones y Advertencias</div>
+                </div>
+                <ul class="command-list">
+                    <li class="command-item"><span class="cmd-code">/warn</span><br>Advertir a un usuario.</li>
+                    <li class="command-item"><span class="cmd-code">/warnings</span><br>Consultar las advertencias de un usuario.</li>
+                    <li class="command-item"><span class="cmd-code">/unwarn</span><br>Eliminar una advertencia.</li>
+                    <li class="command-item"><span class="cmd-code">/clearwarnings</span><br>Eliminar todas las advertencias de un usuario.</li>
+                    <li class="command-item"><span class="cmd-code">/kick</span><br>Expulsar a un usuario del servidor.</li>
+                    <li class="command-item"><span class="cmd-code">/ban</span><br>Bloquear a un usuario del servidor.</li>
+                    <li class="command-item"><span class="cmd-code">/unban</span><br>Retirar el bloqueo de un usuario.</li>
+                    <li class="command-item"><span class="cmd-code">/softban</span><br>Expulsar y eliminar mensajes recientes (24h).</li>
+                    <li class="command-item"><span class="cmd-code">/timeout</span><br>Restringir temporalmente la interacción.</li>
+                    <li class="command-item"><span class="cmd-code">/untimeout</span><br>Retirar el timeout de un usuario.</li>
+                </ul>
+            </div>
+
+            <!-- CATEGORÍA 2: CANALES, ROLES Y CHAT -->
+            <div class="module-card">
+                <div class="module-header">
+                    <i data-lucide="sliders" class="module-icon" size="24"></i>
+                    <div class="module-title">Canales, Roles y Utilidades</div>
+                </div>
+                <ul class="command-list">
+                    <li class="command-item"><span class="cmd-code">/purge</span><br>Eliminar una cantidad determinada de mensajes.</li>
+                    <li class="command-item"><span class="cmd-code">/slowmode</span><br>Configurar el intervalo entre mensajes de un canal.</li>
+                    <li class="command-item"><span class="cmd-code">/lock / unlock</span><br>Bloquear o desbloquear un canal de texto.</li>
+                    <li class="command-item"><span class="cmd-code">/hide / unhide</span><br>Ocultar o restaurar la visibilidad de un canal.</li>
+                    <li class="command-item"><span class="cmd-code">/nick</span><br>Cambiar el apodo de un usuario.</li>
+                    <li class="command-item"><span class="cmd-code">/role add / remove</span><br>Asignar o retirar un rol a un usuario.</li>
+                    <li class="command-item"><span class="cmd-code">/massrole</span><br>Asignar o retirar rol a varios usuarios autorizados.</li>
+                    <li class="command-item"><span class="cmd-code">/deafen / undeafen</span><br>Silenciar audio de un usuario en canal de voz.</li>
+                    <li class="command-item"><span class="cmd-code">/move</span><br>Mover un usuario a otro canal de voz.</li>
+                    <li class="command-item"><span class="cmd-code">/disconnect</span><br>Desconectar a un usuario de un canal de voz.</li>
+                </ul>
+            </div>
+
+            <!-- CATEGORÍA 3: AUTOMODERACIÓN -->
+            <div class="module-card">
+                <div class="module-header">
+                    <i data-lucide="shield-alert" class="module-icon" size="24"></i>
+                    <div class="module-title">Sistema de Automod</div>
+                </div>
+                <ul class="command-list">
+                    <li class="command-item"><span class="cmd-code">/automod</span><br>Configurar el sistema de automoderación.</li>
+                    <li class="command-item"><span class="cmd-code">/automod enable / disable</span><br>Activar o desactivar el automod.</li>
+                    <li class="command-item"><span class="cmd-code">/automod words</span><br>Gestionar palabras prohibidas.</li>
+                    <li class="command-item"><span class="cmd-code">/automod links</span><br>Configurar la detección de enlaces.</li>
+                    <li class="command-item"><span class="cmd-code">/automod spam</span><br>Configurar la detección de spam.</li>
+                    <li class="command-item"><span class="cmd-code">/automod mentions</span><br>Configurar límites de menciones.</li>
+                    <li class="command-item"><span class="cmd-code">/automod caps</span><br>Configurar límites de mayúsculas.</li>
+                    <li class="command-item"><span class="cmd-code">/automod invites</span><br>Gestionar invitaciones de Discord.</li>
+                    <li class="command-item"><span class="cmd-code">/automod exemptions</span><br>Configurar excepciones por usuario/rol/canal.</li>
+                    <li class="command-item"><span class="cmd-code">/automod logs</span><br>Configurar dónde se registran las detecciones.</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="como-funciona">
+        <div class="section-header">
+            <h2>¿Cómo Funciona?</h2>
+            <p>Comienza a utilizar WhiteBear en tu servidor en tres sencillos pasos.</p>
+        </div>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">01</div>
+                <h3>Invita a WhiteBear</h3>
+                <p>Añade el bot a tu servidor de Discord utilizando nuestro enlace oficial autorizado.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">02</div>
+                <h3>Configura las herramientas</h3>
+                <p>Utiliza los comandos de barra para ajustar la automoderación y permisos de moderadores.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">03</div>
+                <h3>Servidor Protegido</h3>
+                <p>Disfruta de una gestión fluida, segura y con diseño adaptado para tu comodidad.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="section-header">
+            <h2>Preguntas Frecuentes</h2>
+            <p>Resuelve tus dudas sobre WhiteBear.</p>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">
+                    ¿Qué es WhiteBear?
+                    <i data-lucide="chevron-down" class="faq-icon" size="20"></i>
+                </button>
+                <div class="faq-answer">
+                    WhiteBear es la evolución en bots de Discord enfocados en moderación estricta, herramientas administrativas completas y alta velocidad de respuesta.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    ¿Cómo configuro la automoderación?
+                    <i data-lucide="chevron-down" class="faq-icon" size="20"></i>
+                </button>
+                <div class="faq-answer">
+                    Puedes activar y ajustar todos los parámetros de seguridad usando los comandos `/automod` directamente en tu servidor.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    ¿WhiteBear es gratuito?
+                    <i data-lucide="chevron-down" class="faq-icon" size="20"></i>
+                </button>
+                <div class="faq-answer">
+                    Sí, puedes invitar y utilizar las funciones principales del bot de manera completamente accesible en tu servidor.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    ¿Dónde puedo recibir soporte?
+                    <i data-lucide="chevron-down" class="faq-icon" size="20"></i>
+                </button>
+                <div class="faq-answer">
+                    Puedes unirte a nuestro servidor oficial de soporte en Discord mediante el enlace disponible en la web para resolver cualquier consulta.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="cta-banner">
+        <h2>¿LISTO PARA PROBAR WHITEBEAR?</h2>
+        <p>Lleva una nueva experiencia y seguridad ártica a tu comunidad de Discord.</p>
+        <div class="hero-buttons">
+            <a href="https://discord.com/api/oauth2/authorize?client_id=1545846469175812197&permissions=274878024704&scope=bot%20applications.commands" target="_blank" class="btn-primary">
+                Invitar a WhiteBear <i data-lucide="external-link" size="16"></i>
+            </a>
+            <a href="https://discord.gg/xSS53bQ6cY" target="_blank" class="btn-secondary">
+                Unirse al servidor de soporte <i data-lucide="message-square" size="16"></i>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo-container" style="margin-bottom: 15px;">
+                    <i data-lucide="shield" class="logo-icon"></i>
+                    <span>WhiteBear</span>
+                </div>
+                <p>Tu sistema inteligente de moderación y herramientas avanzadas para Discord.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navegación</h4>
+                <div class="footer-links">
+                    <a href="#inicio">Inicio</a>
+                    <a href="#que-es">¿Qué es?</a>
+                    <a href="#modulos">Comandos</a>
+                    <a href="#faq">Preguntas frecuentes</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Comunidad</h4>
+                <div class="footer-links">
+                    <a href="https://discord.com/api/oauth2/authorize?client_id=1545846469175812197&permissions=274878024704&scope=bot%20applications.commands" target="_blank">Invitar al bot</a>
+                    <a href="https://discord.gg/xSS53bQ6cY" target="_blank">Servidor de soporte</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 WhiteBear. Todos los derechos reservados. The Arctic Intelligence.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const questionBtn = item.querySelector('.faq-question');
+            questionBtn.addEventListener('click', () => {
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
